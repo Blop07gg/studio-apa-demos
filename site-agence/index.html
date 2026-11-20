@@ -8,7 +8,7 @@
   <meta name="description" content="Création de sites internet à prix fixe pour artisans, commerçants et PME à Bordeaux et en Gironde. Sans abonnement, délai annoncé, un interlocuteur direct.">
   <!-- À COMPLÉTER : remplacer https://www.votre-domaine.fr par le vrai nom de domaine (ici, dans les JSON-LD, sitemap.xml et robots.txt) -->
   <link rel="canonical" href="https://www.votre-domaine.fr/">
-  <meta name="theme-color" content="#1d2a44">
+  <meta name="theme-color" content="#15171c">
   <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
 
   <meta property="og:type" content="website">
@@ -24,7 +24,6 @@
 
   <link rel="preload" href="fonts/bricolage-grotesque-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/atkinson-hyperlegible-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" as="image" href="img/hero-800.webp" imagesrcset="img/hero-800.webp 800w, img/hero-1600.webp 1600w" imagesizes="(min-width: 64em) 40vw, 100vw">
   <link rel="stylesheet" href="css/style.css">
   <script>document.documentElement.classList.add('js');</script>
 
@@ -38,7 +37,7 @@
     "image": "https://www.votre-domaine.fr/img/og-image.jpg",
     "email": "[EMAIL]",
     "telephone": "[TÉLÉPHONE]",
-    "priceRange": "590 € – 1 190 €",
+    "priceRange": "300 € – 500 €",
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "Bordeaux",
@@ -51,8 +50,8 @@
       { "@type": "AdministrativeArea", "name": "Gironde" }
     ],
     "makesOffer": [
-      { "@type": "Offer", "name": "Site One Page", "price": "590", "priceCurrency": "EUR" },
-      { "@type": "Offer", "name": "Site multi-pages", "price": "1190", "priceCurrency": "EUR" }
+      { "@type": "Offer", "name": "Site One Page", "price": "300", "priceCurrency": "EUR" },
+      { "@type": "Offer", "name": "Site multi-pages", "price": "500", "priceCurrency": "EUR" }
     ]
   }
   </script>
@@ -64,7 +63,7 @@
   <header class="site-header">
     <div class="wrap header-inner">
       <a class="logo" href="#top" aria-label="Studio APA, retour en haut de page">
-        <svg class="logo-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#8c1c3a"/><circle cx="16" cy="16" r="8.5" fill="none" stroke="#e7dac0" stroke-width="4"/><rect x="21" y="21" width="6" height="6" rx="1" fill="#fbfaf6"/></svg>
+        <svg class="logo-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#15171c"/><circle cx="16" cy="16" r="8.5" fill="none" stroke="#ffffff" stroke-width="4"/><rect x="20" y="20" width="7" height="7" rx="1.5" fill="#ffe14d"/></svg>
         Studio APA
       </a>
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="menu">
@@ -96,31 +95,29 @@
           </div>
           <p class="hero-note">Deux étudiants bordelais qui se lancent : des prix accessibles et une réponse rapide.</p>
         </div>
-        <figure class="hero-visual">
-          <img src="img/hero-800.webp" srcset="img/hero-800.webp 800w, img/hero-1600.webp 1600w" sizes="(min-width: 64em) 40vw, 100vw" width="800" height="533" alt="Un commerçant échange avec un client au comptoir de sa boutique" fetchpriority="high">
-          <div class="hero-ticket" aria-hidden="true">
-            <strong>Votre devis</strong>
-            <div class="ticket-row"><span>Site One Page</span><span></span><span>590 €</span></div>
-            <div class="ticket-row"><span>Abonnement</span><span></span><span>0 €</span></div>
-            <div class="ticket-total ticket-row"><span>Total</span><span></span><span>590 €</span></div>
-          </div>
-        </figure>
+        <div class="hero-ticket" aria-hidden="true">
+          <div class="hero-ticket-head"><strong>Votre devis</strong><span>Prix fixe</span></div>
+          <div class="ticket-row"><span>Site One Page</span><span></span><span>300 €</span></div>
+          <div class="ticket-row"><span>Hébergement</span><span></span><span>Inclus</span></div>
+          <div class="ticket-row"><span>Abonnement</span><span></span><span>0 €</span></div>
+          <div class="ticket-row ticket-total"><span>Total</span><span></span><span class="marker">300 €</span></div>
+        </div>
       </div>
     </section>
 
     <!-- 2. SERVICES -->
-    <section class="section section--stone" id="services" aria-labelledby="services-titre">
+    <section class="section section--surface" id="services" aria-labelledby="services-titre">
       <div class="wrap">
         <div class="section-head" data-reveal>
           <h2 id="services-titre">Trois formules, selon votre besoin</h2>
           <p>Vous payez une fois, le site est à vous. Pas d’abonnement obligatoire.</p>
         </div>
-        <!-- À COMPLÉTER : prix et délais définitifs des formules (valeurs proposées : 590 € / 1 190 €, 2 semaines / 3 à 4 semaines) -->
+        <!-- À COMPLÉTER : délais définitifs des formules (valeurs proposées : 2 semaines / 3 à 4 semaines) -->
         <div class="services">
           <article class="service">
             <h3>One Page</h3>
             <p class="service-for">Pour être trouvé et contacté facilement : tout tient sur une page.</p>
-            <p class="service-price">590&nbsp;€</p>
+            <p class="service-price"><span class="marker">300&nbsp;€</span></p>
             <p class="service-delay">Mise en ligne en 2 semaines après réception de vos contenus</p>
             <ul>
               <li>Une page avec vos services, horaires et coordonnées</li>
@@ -134,7 +131,7 @@
           <article class="service">
             <h3>Multi-pages</h3>
             <p class="service-for">Pour présenter plusieurs activités, des réalisations ou une équipe.</p>
-            <p class="service-price">1&nbsp;190&nbsp;€</p>
+            <p class="service-price"><span class="marker">500&nbsp;€</span></p>
             <p class="service-delay">Mise en ligne en 3 à 4 semaines après réception de vos contenus</p>
             <ul>
               <li>Jusqu’à 5 pages</li>
@@ -164,17 +161,11 @@
 
     <!-- 3. MÉTHODE -->
     <section class="section" id="methode" aria-labelledby="methode-titre">
-      <div class="wrap method-grid">
-        <div>
-          <div class="section-head" data-reveal>
+      <div class="wrap">
+        <div class="section-head" data-reveal>
             <h2 id="methode-titre">Comment on travaille</h2>
             <p>Cinq étapes, et vous validez à chaque fois avant qu’on passe à la suite.</p>
           </div>
-          <figure class="method-figure">
-            <img src="img/maquette-480.webp" srcset="img/maquette-480.webp 480w, img/maquette-960.webp 960w" sizes="(min-width: 64em) 30vw, 100vw" width="480" height="270" loading="lazy" decoding="async" alt="Croquis de plans dessinés à la main sur une table de travail">
-            <figcaption>Avant d’écrire une ligne de code, on dessine.</figcaption>
-          </figure>
-        </div>
         <ol class="steps">
           <li class="step" data-reveal>
             <h3>Échange</h3>
@@ -201,7 +192,7 @@
     </section>
 
     <!-- 4. POURQUOI NOUS -->
-    <section class="section section--stone" id="pourquoi" aria-labelledby="pourquoi-titre">
+    <section class="section section--surface" id="pourquoi" aria-labelledby="pourquoi-titre">
       <div class="wrap">
         <div class="section-head" data-reveal>
           <h2 id="pourquoi-titre">Pourquoi nous confier votre site</h2>
@@ -267,9 +258,10 @@
             <div class="browser" aria-hidden="true">
               <div class="browser-bar"><i></i><i></i><i></i><span>boulangerie-exemple.fr</span></div>
               <div class="mock mock--bakery">
-                <img src="img/boulangerie-480.webp" srcset="img/boulangerie-480.webp 480w, img/boulangerie-960.webp 960w" sizes="(min-width: 56em) 30vw, 100vw" width="480" height="319" loading="lazy" decoding="async" alt="">
                 <div class="mock-nav"><b>Le Fournil du Quai</b><span>Horaires · Commander</span></div>
-                <p class="mock-title">Pain au levain, cuit chaque matin<br><small>Voir les horaires</small></p>
+                <p class="mock-title">Pain au levain, cuit chaque matin</p>
+                <div class="mock-btns"><span>Voir les horaires</span><span>Commander un gâteau</span></div>
+                <div class="mock-lines"><i></i><i></i><i></i></div>
               </div>
             </div>
             <figcaption>
@@ -282,9 +274,10 @@
             <div class="browser" aria-hidden="true">
               <div class="browser-bar"><i></i><i></i><i></i><span>electricien-exemple.fr</span></div>
               <div class="mock mock--elec">
-                <img src="img/electricien-480.webp" srcset="img/electricien-480.webp 480w, img/electricien-960.webp 960w" sizes="(min-width: 56em) 30vw, 100vw" width="480" height="321" loading="lazy" decoding="async" alt="">
                 <div class="mock-nav"><b>Volt Gironde</b><span>Dépannage · Devis</span></div>
-                <p class="mock-title">Électricien à Mérignac et alentours<br><small>Appeler maintenant</small></p>
+                <p class="mock-title">Électricien à Mérignac et alentours</p>
+                <div class="mock-btns"><span>Appeler maintenant</span><span>Demander un devis</span></div>
+                <div class="mock-lines"><i></i><i></i><i></i></div>
               </div>
             </div>
             <figcaption>
@@ -297,9 +290,10 @@
             <div class="browser" aria-hidden="true">
               <div class="browser-bar"><i></i><i></i><i></i><span>cafe-exemple.fr</span></div>
               <div class="mock mock--cafe">
-                <img src="img/cafe-480.webp" srcset="img/cafe-480.webp 480w, img/cafe-960.webp 960w" sizes="(min-width: 56em) 30vw, 100vw" width="480" height="320" loading="lazy" decoding="async" alt="">
                 <div class="mock-nav"><b>Café des Chartrons</b><span>Carte · Réserver</span></div>
-                <p class="mock-title">Une terrasse au calme, une cuisine de saison<br><small>Réserver une table</small></p>
+                <p class="mock-title">Une terrasse au calme, une cuisine de saison</p>
+                <div class="mock-btns"><span>Réserver une table</span><span>Voir la carte</span></div>
+                <div class="mock-lines"><i></i><i></i><i></i></div>
               </div>
             </div>
             <figcaption>
@@ -313,13 +307,13 @@
     </section>
 
     <!-- 6. TARIFS -->
-    <section class="section section--stone" id="tarifs" aria-labelledby="tarifs-titre">
+    <section class="section section--surface" id="tarifs" aria-labelledby="tarifs-titre">
       <div class="wrap">
         <div class="section-head" data-reveal>
           <h2 id="tarifs-titre">Tous nos tarifs</h2>
           <p>Une formule de base, les options dont vous avez besoin, et c’est tout.</p>
         </div>
-        <!-- À COMPLÉTER : prix des options et de la maintenance (valeurs proposées) -->
+        <!-- À COMPLÉTER : valider les prix des options et de la maintenance (valeurs proposées) -->
         <div class="table-wrap">
           <table class="price-table">
             <caption>Prix nets, TVA non applicable (art. 293 B du CGI)</caption>
@@ -328,19 +322,19 @@
             </thead>
             <tbody>
               <tr class="group"><th colspan="2" scope="colgroup">Formules</th></tr>
-              <tr><th scope="row">One Page<span class="desc">Une page, formulaire de contact, hébergement inclus</span></th><td class="num">590 €</td></tr>
-              <tr><th scope="row">Multi-pages<span class="desc">Jusqu’à 5 pages, formulaire de contact, hébergement inclus</span></th><td class="num">1 190 €</td></tr>
+              <tr><th scope="row">One Page<span class="desc">Une page, formulaire de contact, hébergement inclus</span></th><td class="num">300 €</td></tr>
+              <tr><th scope="row">Multi-pages<span class="desc">Jusqu’à 5 pages, formulaire de contact, hébergement inclus</span></th><td class="num">500 €</td></tr>
               <tr><th scope="row">Sur mesure<span class="desc">Boutique en ligne, espace client, besoin spécifique</span></th><td class="num">Sur devis</td></tr>
             </tbody>
             <tbody>
               <tr class="group"><th colspan="2" scope="colgroup">Options (paiement unique)</th></tr>
-              <tr><th scope="row">Blog / actualités<span class="desc">Publiez vos nouveautés vous-même</span></th><td class="num">190 €</td></tr>
-              <tr><th scope="row">Prise de rendez-vous en ligne<span class="desc">Vos clients réservent un créneau depuis le site</span></th><td class="num">150 €</td></tr>
-              <tr><th scope="row">Google Maps<span class="desc">Carte d’accès intégrée et aide pour votre fiche Google</span></th><td class="num">60 €</td></tr>
+              <tr><th scope="row">Blog / actualités<span class="desc">Publiez vos nouveautés vous-même</span></th><td class="num">90 €</td></tr>
+              <tr><th scope="row">Prise de rendez-vous en ligne<span class="desc">Vos clients réservent un créneau depuis le site</span></th><td class="num">70 €</td></tr>
+              <tr><th scope="row">Google Maps<span class="desc">Carte d’accès intégrée et aide pour votre fiche Google</span></th><td class="num">30 €</td></tr>
             </tbody>
             <tbody>
               <tr class="group"><th colspan="2" scope="colgroup">Maintenance (facultative)</th></tr>
-              <tr><th scope="row">Maintenance mensuelle<span class="desc">Mises à jour, sauvegardes, petites modifications de textes et photos. Sans engagement.</span></th><td class="num">29 € / mois</td></tr>
+              <tr><th scope="row">Maintenance mensuelle<span class="desc">Mises à jour, sauvegardes, petites modifications de textes et photos. Sans engagement.</span></th><td class="num">15 € / mois</td></tr>
             </tbody>
           </table>
         </div>
@@ -373,14 +367,14 @@
               <legend>1. Votre formule</legend>
               <div class="choice">
                 <label>
-                  <input type="radio" name="pack" value="onepage" data-label="Site One Page" data-price="590" checked>
+                  <input type="radio" name="pack" value="onepage" data-label="Site One Page" data-price="300" checked>
                   <span class="choice-text"><b>One Page</b><small>Une page, l’essentiel</small></span>
-                  <span class="choice-price">590 €</span>
+                  <span class="choice-price">300 €</span>
                 </label>
                 <label>
-                  <input type="radio" name="pack" value="multipages" data-label="Site multi-pages (5 pages)" data-price="1190">
+                  <input type="radio" name="pack" value="multipages" data-label="Site multi-pages (5 pages)" data-price="500">
                   <span class="choice-text"><b>Multi-pages</b><small>Jusqu’à 5 pages</small></span>
-                  <span class="choice-price">1 190 €</span>
+                  <span class="choice-price">500 €</span>
                 </label>
               </div>
             </fieldset>
@@ -388,19 +382,19 @@
               <legend>2. Vos options</legend>
               <div class="choice">
                 <label>
-                  <input type="checkbox" name="option" value="blog" data-label="Blog / actualités" data-price="190">
+                  <input type="checkbox" name="option" value="blog" data-label="Blog / actualités" data-price="90">
                   <span class="choice-text"><b>Blog / actualités</b><small>Publiez vos nouveautés</small></span>
-                  <span class="choice-price">+190 €</span>
+                  <span class="choice-price">+90 €</span>
                 </label>
                 <label>
-                  <input type="checkbox" name="option" value="rdv" data-label="Prise de rendez-vous" data-price="150">
+                  <input type="checkbox" name="option" value="rdv" data-label="Prise de rendez-vous" data-price="70">
                   <span class="choice-text"><b>Prise de rendez-vous</b><small>Réservation en ligne</small></span>
-                  <span class="choice-price">+150 €</span>
+                  <span class="choice-price">+70 €</span>
                 </label>
                 <label>
-                  <input type="checkbox" name="option" value="maps" data-label="Google Maps" data-price="60">
+                  <input type="checkbox" name="option" value="maps" data-label="Google Maps" data-price="30">
                   <span class="choice-text"><b>Google Maps</b><small>Carte d’accès et fiche Google</small></span>
-                  <span class="choice-price">+60 €</span>
+                  <span class="choice-price">+30 €</span>
                 </label>
               </div>
             </fieldset>
@@ -408,9 +402,9 @@
               <legend>3. Maintenance</legend>
               <div class="choice">
                 <label>
-                  <input type="checkbox" name="maintenance" value="maintenance" data-label="Maintenance mensuelle" data-price="29">
+                  <input type="checkbox" name="maintenance" value="maintenance" data-label="Maintenance mensuelle" data-price="15">
                   <span class="choice-text"><b>Maintenance mensuelle</b><small>Sans engagement, résiliable à tout moment</small></span>
-                  <span class="choice-price">29 €/mois</span>
+                  <span class="choice-price">15 €/mois</span>
                 </label>
               </div>
             </fieldset>
@@ -425,10 +419,10 @@
             <ul class="quote-lines" id="quote-lines" aria-label="Détail du devis"></ul>
             <div class="quote-total">
               <span>Total à payer une fois</span>
-              <output id="quote-total" for="calc-form" aria-live="polite">590 €</output>
+              <output id="quote-total" for="calc-form" aria-live="polite">300 €</output>
             </div>
-            <p class="quote-sub"><span>Acompte à la commande (50 %)</span><b id="quote-deposit">295 €</b></p>
-            <p class="quote-sub" id="quote-monthly-row" hidden><span>Maintenance</span><b id="quote-monthly">29 € / mois</b></p>
+            <p class="quote-sub"><span>Acompte à la commande (50 %)</span><b id="quote-deposit">150 €</b></p>
+            <p class="quote-sub" id="quote-monthly-row" hidden><span>Maintenance</span><b id="quote-monthly">15 € / mois</b></p>
             <p class="quote-sub"><span>Hébergement</span><b>Inclus</b></p>
             <a class="btn btn-primary" id="quote-send" href="#contact">Envoyer cette demande</a>
             <p class="quote-legal">Estimation indicative. Le devis définitif, au prix fixe, vous est envoyé après notre premier échange. TVA non applicable, art. 293 B du CGI. Nom de domaine facturé à part.</p>
@@ -438,7 +432,7 @@
     </section>
 
     <!-- 8. FAQ -->
-    <section class="section" id="faq" aria-labelledby="faq-titre">
+    <section class="section section--surface" id="faq" aria-labelledby="faq-titre">
       <div class="wrap">
         <div class="section-head" data-reveal>
           <h2 id="faq-titre">Vos questions</h2>
@@ -482,7 +476,7 @@
     </section>
 
     <!-- 9. CONTACT -->
-    <section class="section section--stone" id="contact" aria-labelledby="contact-titre">
+    <section class="section" id="contact" aria-labelledby="contact-titre">
       <div class="wrap contact-grid">
         <div class="contact-info">
           <h2 id="contact-titre">Parlons de votre site</h2>
@@ -543,7 +537,7 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <a class="logo" href="#top">
-            <svg class="logo-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#8c1c3a"/><circle cx="16" cy="16" r="8.5" fill="none" stroke="#e7dac0" stroke-width="4"/><rect x="21" y="21" width="6" height="6" rx="1" fill="#fbfaf6"/></svg>
+            <svg class="logo-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#15171c"/><circle cx="16" cy="16" r="8.5" fill="none" stroke="#ffffff" stroke-width="4"/><rect x="20" y="20" width="7" height="7" rx="1.5" fill="#ffe14d"/></svg>
             Studio APA
           </a>
           <p>Création de sites internet pour artisans, commerçants et PME.</p>
