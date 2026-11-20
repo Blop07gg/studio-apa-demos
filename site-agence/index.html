@@ -1,0 +1,571 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Studio APA · Création de sites web pour artisans et commerçants à Bordeaux</title>
+  <meta name="description" content="Création de sites internet à prix fixe pour artisans, commerçants et PME à Bordeaux et en Gironde. Sans abonnement, délai annoncé, un interlocuteur direct.">
+  <!-- À COMPLÉTER : remplacer https://www.votre-domaine.fr par le vrai nom de domaine (ici, dans les JSON-LD, sitemap.xml et robots.txt) -->
+  <link rel="canonical" href="https://www.votre-domaine.fr/">
+  <meta name="theme-color" content="#1d2a44">
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:site_name" content="Studio APA">
+  <meta property="og:title" content="Studio APA · Sites web pour artisans et commerçants en Gironde">
+  <meta property="og:description" content="Un site clair, à prix fixe et sans abonnement, créé à Bordeaux par deux étudiants qui vous répondent directement.">
+  <meta property="og:url" content="https://www.votre-domaine.fr/">
+  <meta property="og:image" content="https://www.votre-domaine.fr/img/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="preload" href="fonts/bricolage-grotesque-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/atkinson-hyperlegible-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" as="image" href="img/hero-800.webp" imagesrcset="img/hero-800.webp 800w, img/hero-1600.webp 1600w" imagesizes="(min-width: 64em) 40vw, 100vw">
+  <link rel="stylesheet" href="css/style.css">
+  <script>document.documentElement.classList.add('js');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Studio APA",
+    "description": "Création de sites internet pour artisans, commerçants et PME à Bordeaux et en Gironde.",
+    "url": "https://www.votre-domaine.fr/",
+    "image": "https://www.votre-domaine.fr/img/og-image.jpg",
+    "email": "[EMAIL]",
+    "telephone": "[TÉLÉPHONE]",
+    "priceRange": "590 € – 1 190 €",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Bordeaux",
+      "addressRegion": "Nouvelle-Aquitaine",
+      "postalCode": "33000",
+      "addressCountry": "FR"
+    },
+    "areaServed": [
+      { "@type": "City", "name": "Bordeaux" },
+      { "@type": "AdministrativeArea", "name": "Gironde" }
+    ],
+    "makesOffer": [
+      { "@type": "Offer", "name": "Site One Page", "price": "590", "priceCurrency": "EUR" },
+      { "@type": "Offer", "name": "Site multi-pages", "price": "1190", "priceCurrency": "EUR" }
+    ]
+  }
+  </script>
+  <!-- À COMPLÉTER : email, téléphone et code postal exact dans le JSON-LD ci-dessus ; prix à aligner sur vos tarifs -->
+</head>
+<body>
+  <a class="skip-link" href="#contenu">Aller au contenu</a>
+
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="logo" href="#top" aria-label="Studio APA, retour en haut de page">
+        <svg class="logo-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#8c1c3a"/><circle cx="16" cy="16" r="8.5" fill="none" stroke="#e7dac0" stroke-width="4"/><rect x="21" y="21" width="6" height="6" rx="1" fill="#fbfaf6"/></svg>
+        Studio APA
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="menu">
+        <span class="nav-toggle-bars" aria-hidden="true"></span> Menu
+      </button>
+      <nav class="site-nav" id="menu" aria-label="Navigation principale">
+        <ul>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#methode">Méthode</a></li>
+          <li><a href="#exemples">Exemples</a></li>
+          <li><a href="#tarifs">Tarifs</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a class="btn btn-primary nav-cta" href="#devis">Calculer mon devis</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenu">
+    <!-- 1. HERO -->
+    <section class="hero" id="top">
+      <div class="wrap hero-grid">
+        <div>
+          <h1>Un site clair pour votre entreprise, à prix fixe.</h1>
+          <p class="hero-lead">Artisans, commerçants et PME de Gironde : on crée votre site, on vous explique tout sans jargon, et vous connaissez le prix avant qu’on commence.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#contact">Demander un devis</a>
+            <a class="btn btn-ghost" href="#exemples">Voir un exemple</a>
+          </div>
+          <p class="hero-note">Deux étudiants bordelais qui se lancent : des prix accessibles et une réponse rapide.</p>
+        </div>
+        <figure class="hero-visual">
+          <img src="img/hero-800.webp" srcset="img/hero-800.webp 800w, img/hero-1600.webp 1600w" sizes="(min-width: 64em) 40vw, 100vw" width="800" height="533" alt="Un commerçant échange avec un client au comptoir de sa boutique" fetchpriority="high">
+          <div class="hero-ticket" aria-hidden="true">
+            <strong>Votre devis</strong>
+            <div class="ticket-row"><span>Site One Page</span><span></span><span>590 €</span></div>
+            <div class="ticket-row"><span>Abonnement</span><span></span><span>0 €</span></div>
+            <div class="ticket-total ticket-row"><span>Total</span><span></span><span>590 €</span></div>
+          </div>
+        </figure>
+      </div>
+    </section>
+
+    <!-- 2. SERVICES -->
+    <section class="section section--stone" id="services" aria-labelledby="services-titre">
+      <div class="wrap">
+        <div class="section-head" data-reveal>
+          <h2 id="services-titre">Trois formules, selon votre besoin</h2>
+          <p>Vous payez une fois, le site est à vous. Pas d’abonnement obligatoire.</p>
+        </div>
+        <!-- À COMPLÉTER : prix et délais définitifs des formules (valeurs proposées : 590 € / 1 190 €, 2 semaines / 3 à 4 semaines) -->
+        <div class="services">
+          <article class="service">
+            <h3>One Page</h3>
+            <p class="service-for">Pour être trouvé et contacté facilement : tout tient sur une page.</p>
+            <p class="service-price">590&nbsp;€</p>
+            <p class="service-delay">Mise en ligne en 2 semaines après réception de vos contenus</p>
+            <ul>
+              <li>Une page avec vos services, horaires et coordonnées</li>
+              <li>Formulaire de contact</li>
+              <li>Adapté au téléphone et à l’ordinateur</li>
+              <li>Référencement local de base</li>
+              <li>Hébergement inclus</li>
+            </ul>
+            <a class="btn btn-ghost" href="#devis">Calculer ce devis</a>
+          </article>
+          <article class="service">
+            <h3>Multi-pages</h3>
+            <p class="service-for">Pour présenter plusieurs activités, des réalisations ou une équipe.</p>
+            <p class="service-price">1&nbsp;190&nbsp;€</p>
+            <p class="service-delay">Mise en ligne en 3 à 4 semaines après réception de vos contenus</p>
+            <ul>
+              <li>Jusqu’à 5 pages</li>
+              <li>Formulaire de contact</li>
+              <li>Adapté au téléphone et à l’ordinateur</li>
+              <li>Référencement local de base sur chaque page</li>
+              <li>Hébergement inclus</li>
+            </ul>
+            <a class="btn btn-ghost" href="#devis">Calculer ce devis</a>
+          </article>
+          <article class="service service--custom">
+            <h3>Sur mesure</h3>
+            <p class="service-for">Pour un besoin particulier : boutique en ligne, espace client, plus de pages…</p>
+            <p class="service-price"><small>Sur devis</small></p>
+            <p class="service-delay">Délai fixé ensemble avant de commencer</p>
+            <ul>
+              <li>On étudie votre projet avec vous</li>
+              <li>Devis détaillé et gratuit</li>
+              <li>Prix fixe une fois validé</li>
+            </ul>
+            <a class="btn btn-ghost" href="#contact">Décrire mon projet</a>
+          </article>
+        </div>
+        <p class="vat-note">Prix nets. TVA non applicable, article 293 B du CGI.</p>
+      </div>
+    </section>
+
+    <!-- 3. MÉTHODE -->
+    <section class="section" id="methode" aria-labelledby="methode-titre">
+      <div class="wrap method-grid">
+        <div>
+          <div class="section-head" data-reveal>
+            <h2 id="methode-titre">Comment on travaille</h2>
+            <p>Cinq étapes, et vous validez à chaque fois avant qu’on passe à la suite.</p>
+          </div>
+          <figure class="method-figure">
+            <img src="img/maquette-480.webp" srcset="img/maquette-480.webp 480w, img/maquette-960.webp 960w" sizes="(min-width: 64em) 30vw, 100vw" width="480" height="270" loading="lazy" decoding="async" alt="Croquis de plans dessinés à la main sur une table de travail">
+            <figcaption>Avant d’écrire une ligne de code, on dessine.</figcaption>
+          </figure>
+        </div>
+        <ol class="steps">
+          <li class="step" data-reveal>
+            <h3>Échange</h3>
+            <p>On se parle, au téléphone ou chez vous. Vous nous expliquez votre activité, vos clients et ce que vous attendez du site. Vous recevez ensuite un devis au prix fixe.</p>
+          </li>
+          <li class="step" data-reveal>
+            <h3>Maquette</h3>
+            <p>On vous montre à quoi ressemblera le site, page par page. Vous demandez les changements que vous voulez à ce stade.</p>
+          </li>
+          <li class="step" data-reveal>
+            <h3>Création</h3>
+            <p>On construit le site avec vos textes et vos photos. Pas de textes ? On vous aide à les rédiger.</p>
+          </li>
+          <li class="step" data-reveal>
+            <h3>Validation</h3>
+            <p>Vous testez le site en ligne sur une adresse privée, sur votre téléphone et votre ordinateur. On corrige ce qui ne vous convient pas.</p>
+          </li>
+          <li class="step" data-reveal>
+            <h3>Mise en ligne</h3>
+            <p>Le site est publié à votre adresse. On vous montre comment il fonctionne et on vous remet tous les accès.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- 4. POURQUOI NOUS -->
+    <section class="section section--stone" id="pourquoi" aria-labelledby="pourquoi-titre">
+      <div class="wrap">
+        <div class="section-head" data-reveal>
+          <h2 id="pourquoi-titre">Pourquoi nous confier votre site</h2>
+        </div>
+        <ul class="reasons">
+          <li class="reason">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12 12 20l-8-8V4h8z"/><circle cx="8.5" cy="8.5" r="1.5"/></svg>
+            <h3>Prix fixe</h3>
+            <p>Le montant du devis est celui que vous payez. Pas de surprise à la fin.</p>
+          </li>
+          <li class="reason">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="15" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/><path d="m9 15 6-0"/></svg>
+            <h3>Sans abonnement</h3>
+            <p>Vous payez le site une fois. La maintenance est une option, sans engagement.</p>
+          </li>
+          <li class="reason">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2.5M9 2h6"/></svg>
+            <h3>Délai annoncé</h3>
+            <p>On vous donne une date de mise en ligne dès le devis, et on s’y tient.</p>
+          </li>
+          <li class="reason">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>
+            <h3>Un seul interlocuteur</h3>
+            <p>Vous parlez directement à ceux qui créent votre site. Pas de standard, pas de sous-traitant.</p>
+          </li>
+          <li class="reason">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg>
+            <h3>Adapté au mobile</h3>
+            <p>Vos clients vous cherchent sur leur téléphone. Le site est pensé pour eux d’abord.</p>
+          </li>
+          <li class="reason">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 9h8M8 13h5"/></svg>
+            <h3>Accompagnement humain</h3>
+            <p>On vous explique comment tout marche, avec des mots simples, aussi longtemps qu’il le faut.</p>
+          </li>
+        </ul>
+
+        <div class="about">
+          <div data-reveal>
+            <h3>Qui on est</h3>
+            <!-- À COMPLÉTER : vos prénoms, votre formation et une photo de vous deux (pas de photo de banque d’images pour vous représenter) -->
+            <p>Nous sommes deux étudiants à Bordeaux, et notre activité démarre. On ne va pas vous le cacher : c’est justement ce qui nous permet de proposer des prix accessibles, de répondre vite et de suivre chaque projet nous-mêmes, du premier appel à la mise en ligne.</p>
+            <p>On travaille avec des outils simples et solides, pour que votre site soit rapide, facile à entretenir et qu’il vous appartienne vraiment.</p>
+          </div>
+          <div class="reviews-empty" data-reveal>
+            <h3>Les avis de nos clients</h3>
+            <!-- Section volontairement vide : ajouter uniquement de vrais avis, avec l’accord des clients -->
+            <p>Cette place est réservée aux avis de nos premiers clients. On préfère la laisser vide plutôt que d’inventer des témoignages.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. EXEMPLES -->
+    <section class="section" id="exemples" aria-labelledby="exemples-titre">
+      <div class="wrap">
+        <div class="section-head" data-reveal>
+          <h2 id="exemples-titre">À quoi peut ressembler votre site</h2>
+          <p>Ces trois maquettes sont des exemples de démonstration, réalisés pour des entreprises fictives. Elles montrent ce qu’on peut faire pour votre métier.</p>
+        </div>
+        <div class="demos">
+          <figure class="demo" data-reveal>
+            <div class="browser" aria-hidden="true">
+              <div class="browser-bar"><i></i><i></i><i></i><span>boulangerie-exemple.fr</span></div>
+              <div class="mock mock--bakery">
+                <img src="img/boulangerie-480.webp" srcset="img/boulangerie-480.webp 480w, img/boulangerie-960.webp 960w" sizes="(min-width: 56em) 30vw, 100vw" width="480" height="319" loading="lazy" decoding="async" alt="">
+                <div class="mock-nav"><b>Le Fournil du Quai</b><span>Horaires · Commander</span></div>
+                <p class="mock-title">Pain au levain, cuit chaque matin<br><small>Voir les horaires</small></p>
+              </div>
+            </div>
+            <figcaption>
+              <span class="demo-badge">Exemple de démonstration</span>
+              <h3>Boulangerie</h3>
+              <p>One Page : horaires, produits du jour, plan d’accès et commande de gâteaux par formulaire.</p>
+            </figcaption>
+          </figure>
+          <figure class="demo" data-reveal>
+            <div class="browser" aria-hidden="true">
+              <div class="browser-bar"><i></i><i></i><i></i><span>electricien-exemple.fr</span></div>
+              <div class="mock mock--elec">
+                <img src="img/electricien-480.webp" srcset="img/electricien-480.webp 480w, img/electricien-960.webp 960w" sizes="(min-width: 56em) 30vw, 100vw" width="480" height="321" loading="lazy" decoding="async" alt="">
+                <div class="mock-nav"><b>Volt Gironde</b><span>Dépannage · Devis</span></div>
+                <p class="mock-title">Électricien à Mérignac et alentours<br><small>Appeler maintenant</small></p>
+              </div>
+            </div>
+            <figcaption>
+              <span class="demo-badge">Exemple de démonstration</span>
+              <h3>Électricien</h3>
+              <p>Multi-pages : services, zone d’intervention, réalisations et bouton d’appel direct sur mobile.</p>
+            </figcaption>
+          </figure>
+          <figure class="demo" data-reveal>
+            <div class="browser" aria-hidden="true">
+              <div class="browser-bar"><i></i><i></i><i></i><span>cafe-exemple.fr</span></div>
+              <div class="mock mock--cafe">
+                <img src="img/cafe-480.webp" srcset="img/cafe-480.webp 480w, img/cafe-960.webp 960w" sizes="(min-width: 56em) 30vw, 100vw" width="480" height="320" loading="lazy" decoding="async" alt="">
+                <div class="mock-nav"><b>Café des Chartrons</b><span>Carte · Réserver</span></div>
+                <p class="mock-title">Une terrasse au calme, une cuisine de saison<br><small>Réserver une table</small></p>
+              </div>
+            </div>
+            <figcaption>
+              <span class="demo-badge">Exemple de démonstration</span>
+              <h3>Café-restaurant</h3>
+              <p>Multi-pages avec prise de rendez-vous : carte, réservation en ligne et Google Maps.</p>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. TARIFS -->
+    <section class="section section--stone" id="tarifs" aria-labelledby="tarifs-titre">
+      <div class="wrap">
+        <div class="section-head" data-reveal>
+          <h2 id="tarifs-titre">Tous nos tarifs</h2>
+          <p>Une formule de base, les options dont vous avez besoin, et c’est tout.</p>
+        </div>
+        <!-- À COMPLÉTER : prix des options et de la maintenance (valeurs proposées) -->
+        <div class="table-wrap">
+          <table class="price-table">
+            <caption>Prix nets, TVA non applicable (art. 293 B du CGI)</caption>
+            <thead>
+              <tr><th scope="col">Prestation</th><th scope="col">Prix</th></tr>
+            </thead>
+            <tbody>
+              <tr class="group"><th colspan="2" scope="colgroup">Formules</th></tr>
+              <tr><th scope="row">One Page<span class="desc">Une page, formulaire de contact, hébergement inclus</span></th><td class="num">590 €</td></tr>
+              <tr><th scope="row">Multi-pages<span class="desc">Jusqu’à 5 pages, formulaire de contact, hébergement inclus</span></th><td class="num">1 190 €</td></tr>
+              <tr><th scope="row">Sur mesure<span class="desc">Boutique en ligne, espace client, besoin spécifique</span></th><td class="num">Sur devis</td></tr>
+            </tbody>
+            <tbody>
+              <tr class="group"><th colspan="2" scope="colgroup">Options (paiement unique)</th></tr>
+              <tr><th scope="row">Blog / actualités<span class="desc">Publiez vos nouveautés vous-même</span></th><td class="num">190 €</td></tr>
+              <tr><th scope="row">Prise de rendez-vous en ligne<span class="desc">Vos clients réservent un créneau depuis le site</span></th><td class="num">150 €</td></tr>
+              <tr><th scope="row">Google Maps<span class="desc">Carte d’accès intégrée et aide pour votre fiche Google</span></th><td class="num">60 €</td></tr>
+            </tbody>
+            <tbody>
+              <tr class="group"><th colspan="2" scope="colgroup">Maintenance (facultative)</th></tr>
+              <tr><th scope="row">Maintenance mensuelle<span class="desc">Mises à jour, sauvegardes, petites modifications de textes et photos. Sans engagement.</span></th><td class="num">29 € / mois</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="infra">
+          <div>
+            <h3>Hébergement : inclus</h3>
+            <p>Votre site est hébergé sans frais supplémentaires, avec un certificat de sécurité (https). Rien à payer chaque mois pour qu’il reste en ligne.</p>
+          </div>
+          <div>
+            <h3>Nom de domaine : facturé à part</h3>
+            <!-- À COMPLÉTER : vérifier le prix indicatif du nom de domaine chez le registrar choisi -->
+            <p>L’adresse de votre site (par exemple votre-entreprise.fr) est achetée à votre nom, chez le prestataire de votre choix : comptez environ 10 à 15 € par an. On s’occupe de la configuration.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. CALCULATEUR -->
+    <section class="section calc" id="devis" aria-labelledby="devis-titre">
+      <div class="wrap">
+        <div class="section-head" data-reveal>
+          <h2 id="devis-titre">Calculez votre devis</h2>
+          <p>Choisissez une formule et vos options : le total se met à jour tout de suite.</p>
+        </div>
+        <div class="calc-grid">
+          <form class="calc-form" id="calc-form" aria-describedby="calc-help">
+            <p id="calc-help" class="visually-hidden">Le devis estimatif à côté du formulaire se met à jour à chaque choix.</p>
+            <!-- Les prix du calculateur sont dans les attributs data-price (à garder alignés avec les tarifs) -->
+            <fieldset>
+              <legend>1. Votre formule</legend>
+              <div class="choice">
+                <label>
+                  <input type="radio" name="pack" value="onepage" data-label="Site One Page" data-price="590" checked>
+                  <span class="choice-text"><b>One Page</b><small>Une page, l’essentiel</small></span>
+                  <span class="choice-price">590 €</span>
+                </label>
+                <label>
+                  <input type="radio" name="pack" value="multipages" data-label="Site multi-pages (5 pages)" data-price="1190">
+                  <span class="choice-text"><b>Multi-pages</b><small>Jusqu’à 5 pages</small></span>
+                  <span class="choice-price">1 190 €</span>
+                </label>
+              </div>
+            </fieldset>
+            <fieldset>
+              <legend>2. Vos options</legend>
+              <div class="choice">
+                <label>
+                  <input type="checkbox" name="option" value="blog" data-label="Blog / actualités" data-price="190">
+                  <span class="choice-text"><b>Blog / actualités</b><small>Publiez vos nouveautés</small></span>
+                  <span class="choice-price">+190 €</span>
+                </label>
+                <label>
+                  <input type="checkbox" name="option" value="rdv" data-label="Prise de rendez-vous" data-price="150">
+                  <span class="choice-text"><b>Prise de rendez-vous</b><small>Réservation en ligne</small></span>
+                  <span class="choice-price">+150 €</span>
+                </label>
+                <label>
+                  <input type="checkbox" name="option" value="maps" data-label="Google Maps" data-price="60">
+                  <span class="choice-text"><b>Google Maps</b><small>Carte d’accès et fiche Google</small></span>
+                  <span class="choice-price">+60 €</span>
+                </label>
+              </div>
+            </fieldset>
+            <fieldset>
+              <legend>3. Maintenance</legend>
+              <div class="choice">
+                <label>
+                  <input type="checkbox" name="maintenance" value="maintenance" data-label="Maintenance mensuelle" data-price="29">
+                  <span class="choice-text"><b>Maintenance mensuelle</b><small>Sans engagement, résiliable à tout moment</small></span>
+                  <span class="choice-price">29 €/mois</span>
+                </label>
+              </div>
+            </fieldset>
+            <p class="calc-custom">Besoin d’autre chose ? <a href="#contact">Décrivez votre projet</a>, on vous fait un devis sur mesure.</p>
+          </form>
+
+          <aside class="quote" aria-labelledby="quote-title">
+            <div class="quote-head">
+              <h3 id="quote-title">Devis estimatif</h3>
+              <p class="quote-meta">Studio APA, Bordeaux<br><span id="quote-date"></span><br><span class="quote-stamp" aria-hidden="true">Prix fixe</span></p>
+            </div>
+            <ul class="quote-lines" id="quote-lines" aria-label="Détail du devis"></ul>
+            <div class="quote-total">
+              <span>Total à payer une fois</span>
+              <output id="quote-total" for="calc-form" aria-live="polite">590 €</output>
+            </div>
+            <p class="quote-sub"><span>Acompte à la commande (50 %)</span><b id="quote-deposit">295 €</b></p>
+            <p class="quote-sub" id="quote-monthly-row" hidden><span>Maintenance</span><b id="quote-monthly">29 € / mois</b></p>
+            <p class="quote-sub"><span>Hébergement</span><b>Inclus</b></p>
+            <a class="btn btn-primary" id="quote-send" href="#contact">Envoyer cette demande</a>
+            <p class="quote-legal">Estimation indicative. Le devis définitif, au prix fixe, vous est envoyé après notre premier échange. TVA non applicable, art. 293 B du CGI. Nom de domaine facturé à part.</p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. FAQ -->
+    <section class="section" id="faq" aria-labelledby="faq-titre">
+      <div class="wrap">
+        <div class="section-head" data-reveal>
+          <h2 id="faq-titre">Vos questions</h2>
+        </div>
+        <!-- À COMPLÉTER : valider les conditions (délais, nombre de modifications, préavis de résiliation) -->
+        <div class="faq">
+          <details>
+            <summary>Combien de temps faut-il pour créer mon site ?</summary>
+            <p>Comptez 2 semaines pour un One Page et 3 à 4 semaines pour un site multi-pages, à partir du moment où on a vos textes et vos photos. La date exacte est inscrite sur le devis.</p>
+          </details>
+          <details>
+            <summary>Comment se passe le paiement ?</summary>
+            <p>En deux fois : 50 % à la signature du devis pour lancer le travail, et 50 % à la mise en ligne, une fois que vous avez validé le site. Paiement par virement.</p>
+          </details>
+          <details>
+            <summary>Qu’est-ce qui est inclus dans le prix ?</summary>
+            <p>La maquette, la création du site, l’adaptation au mobile, le formulaire de contact, le référencement local de base, l’hébergement et la mise en ligne. Le nom de domaine et les options (blog, rendez-vous, Google Maps) sont en plus, et indiqués sur le devis.</p>
+          </details>
+          <details>
+            <summary>Puis-je demander des modifications ?</summary>
+            <p>Oui. Deux séries de modifications sont comprises à l’étape de la maquette, puis vous validez le site avant sa mise en ligne. Après la mise en ligne, les petites modifications sont incluses dans la maintenance, ou facturées à la demande si vous ne l’avez pas prise.</p>
+          </details>
+          <details>
+            <summary>L’hébergement est-il compris ?</summary>
+            <p>Oui, l’hébergement est inclus, sans frais mensuels. Votre site reste en ligne même si vous ne prenez pas la maintenance.</p>
+          </details>
+          <details>
+            <summary>Et le nom de domaine ?</summary>
+            <p>Il est facturé à part : vous l’achetez à votre nom, environ 10 à 15 € par an selon l’extension. On vous guide pour le choisir et on s’occupe de le relier à votre site.</p>
+          </details>
+          <details>
+            <summary>À qui appartient le site ?</summary>
+            <p>À vous, une fois le solde payé. On vous remet les fichiers du site et tous les accès. Vous restez libre de le confier à quelqu’un d’autre plus tard.</p>
+          </details>
+          <details>
+            <summary>Comment arrêter la maintenance ?</summary>
+            <p>Elle est sans engagement : un simple email suffit, avec un mois de préavis. Votre site reste en ligne et il vous appartient toujours.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. CONTACT -->
+    <section class="section section--stone" id="contact" aria-labelledby="contact-titre">
+      <div class="wrap contact-grid">
+        <div class="contact-info">
+          <h2 id="contact-titre">Parlons de votre site</h2>
+          <p>Décrivez-nous votre activité en quelques lignes. On vous rappelle pour en discuter, sans engagement.</p>
+          <dl>
+            <dt>Email</dt>
+            <!-- À COMPLÉTER : adresse email -->
+            <dd><a href="mailto:[EMAIL]">[EMAIL]</a></dd>
+            <dt>Téléphone</dt>
+            <!-- À COMPLÉTER : numéro de téléphone (format +33…) -->
+            <dd><a href="tel:[TÉLÉPHONE]">[TÉLÉPHONE]</a></dd>
+            <dt>Zone d’intervention</dt>
+            <dd>Bordeaux, la métropole et toute la Gironde. Rendez-vous chez vous ou à distance.</dd>
+          </dl>
+        </div>
+
+        <form class="form" id="contact-form" name="contact" method="POST" action="/merci.html" data-netlify="true" data-demo="true" netlify-honeypot="societe-web" novalidate>
+          <input type="hidden" name="form-name" value="contact">
+          <p class="honeypot" aria-hidden="true"><label>Ne pas remplir <input name="societe-web" tabindex="-1" autocomplete="off"></label></p>
+          <div class="form-row">
+            <div class="field">
+              <label for="nom">Nom</label>
+              <input id="nom" name="nom" type="text" autocomplete="name" required aria-describedby="nom-err">
+              <p class="error" id="nom-err"></p>
+            </div>
+            <div class="field">
+              <label for="telephone">Téléphone <span class="opt">(facultatif)</span></label>
+              <input id="telephone" name="telephone" type="tel" autocomplete="tel" inputmode="tel">
+            </div>
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" autocomplete="email" required aria-describedby="email-err">
+            <p class="error" id="email-err"></p>
+          </div>
+          <div class="field">
+            <label for="message">Votre message</label>
+            <textarea id="message" name="message" required aria-describedby="message-err" placeholder="Votre activité, ce que vous attendez du site, votre délai…"></textarea>
+            <p class="error" id="message-err"></p>
+          </div>
+          <div>
+            <label class="consent">
+              <input type="checkbox" id="rgpd" name="consentement" value="oui" required aria-describedby="rgpd-err">
+              <span>J’accepte que mes informations soient utilisées pour être recontacté au sujet de ma demande. Elles ne sont ni vendues ni partagées. <a href="confidentialite.html">Politique de confidentialité</a></span>
+            </label>
+            <p class="error" id="rgpd-err"></p>
+          </div>
+          <button class="btn btn-primary" type="submit">Envoyer ma demande</button>
+          <p class="form-status" id="form-status" role="status" hidden></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- 10. PIED DE PAGE -->
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="logo" href="#top">
+            <svg class="logo-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#8c1c3a"/><circle cx="16" cy="16" r="8.5" fill="none" stroke="#e7dac0" stroke-width="4"/><rect x="21" y="21" width="6" height="6" rx="1" fill="#fbfaf6"/></svg>
+            Studio APA
+          </a>
+          <p>Création de sites internet pour artisans, commerçants et PME.</p>
+        </div>
+        <div>
+          <h2>Zone d’intervention</h2>
+          <p>Bordeaux et sa métropole (Mérignac, Pessac, Talence, Bègles…) et toute la Gironde.</p>
+        </div>
+        <div>
+          <h2>Informations</h2>
+          <ul>
+            <li><a href="mentions-legales.html">Mentions légales</a></li>
+            <li><a href="confidentialite.html">Politique de confidentialité</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <!-- À COMPLÉTER : SIRET -->
+      <p class="footer-bottom">© <span id="year">2026</span> Studio APA, entrepreneur individuel (micro-entreprise). SIRET [À COMPLÉTER]</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>
