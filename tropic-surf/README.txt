@@ -9,5 +9,9 @@ index.html : structure et contenu du site
 style.css : design, responsive et animations
 script.js : menu mobile, animations d'apparition, galerie filtrable et agrandissement des photos
 
+PHOTOS (côte atlantique, licence Unsplash)
+Hero et galerie : Joachim Lesne (Seignosse), Mathias Reding (Biarritz, 3 photos), Mathieu Chirico (Lacanau), Pierluigi Ballandi (La Gravière, Hossegor), Jarno Colijn (Hossegor), Rod Mann (Hossegor), photo "Surfer running at the beach" (Hossegor).
+Remplacer par les vraies photos du client dès qu'elles sont disponibles : c'est le gain d'authenticité le plus fort.
+
 IMPORTANT
 Il s'agit d'une première version de démonstration. Les photos proviennent de liens externes Unsplash et sont illustratives ; vérifiez leurs droits d'utilisation et leur pertinence avant une publication publique. Les liens de marques mènent à leurs sites officiels présumés et doivent être revérifiés avant publication. Les descriptions sont des introductions et non des fiches techniques exhaustives.
