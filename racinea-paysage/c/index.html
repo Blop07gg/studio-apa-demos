@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Racinea Paysage — Entretien d'espaces verts à Avignon et alentours</title>
+<meta name="description" content="Racinea Paysage, entretien d'espaces verts à Avignon et alentours : jardins, haies, espaces verts. Basé à Morières-lès-Avignon. Appelez Paul au 07 83 88 92 32.">
+<meta name="robots" content="noindex, nofollow">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:title" content="Racinea Paysage — Entretien d'espaces verts à Avignon">
+<meta property="og:description" content="Entretien de jardins et d'espaces verts à Avignon et alentours.">
+<meta property="og:image" content="https://images.pexels.com/photos/14211552/pexels-photo-14211552.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop">
+<meta name="theme-color" content="#15302A">
+<link rel="preload" href="../fonts/bricolage-grotesque-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../fonts/bricolage-grotesque-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HomeAndConstructionBusiness",
+  "name": "Racinea Paysage",
+  "description": "Entretien d'espaces verts à Avignon et alentours.",
+  "founder": { "@type": "Person", "name": "Paul Pegon Rouchon" },
+  "telephone": "+33783889232",
+  "email": "racineapaysage@gmail.com",
+  "sameAs": ["https://www.instagram.com/racineapaysage/"],
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "72 chemin des Mascarons",
+    "postalCode": "84310",
+    "addressLocality": "Morières-lès-Avignon",
+    "addressRegion": "Vaucluse",
+    "addressCountry": "FR"
+  },
+  "areaServed": "Avignon et alentours"
+}
+</script>
+<style>
+@font-face{font-family:"Bricolage";src:url("../fonts/bricolage-grotesque-latin-400-normal.woff2") format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Bricolage";src:url("../fonts/bricolage-grotesque-latin-600-normal.woff2") format("woff2");font-weight:600;font-display:swap}
+@font-face{font-family:"Bricolage";src:url("../fonts/bricolage-grotesque-latin-800-normal.woff2") format("woff2");font-weight:800;font-display:swap}
+
+:root{
+  --cypres:#15302A;   /* vert cyprès : fond sombre, texte sur clair */
+  --cypres-2:#1F4238; /* variante pour les surfaces */
+  --calcaire:#EEF0E8; /* pierre calcaire : fond clair */
+  --genet:#F2C14E;    /* jaune genêt de la garrigue : accent */
+  --feuille:#A9C4A2;  /* feuille d'olivier : texte doux sur sombre */
+  --gris:#47534D;     /* texte secondaire sur clair */
+  --f:"Bricolage", "Avenir Next", system-ui, sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:4.5rem}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;animation:none!important}}
+body{margin:0;background:var(--calcaire);color:var(--cypres);font:1.0625rem/1.6 var(--f);-webkit-text-size-adjust:100%;overflow-x:hidden}
+img{max-width:100%;height:auto;display:block}
+h1,h2,h3{font-weight:800;line-height:1;margin:0 0 .5em;letter-spacing:-.02em}
+h2{font-size:clamp(2.4rem,8vw,5rem)}
+h3{font-size:clamp(1.6rem,4.5vw,2.4rem)}
+p{margin:0 0 1em;max-width:58ch}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--genet);outline-offset:3px}
+.clair :focus-visible,.contact :focus-visible{outline-color:var(--cypres)}
+.skip{position:absolute;left:-999px;top:0;background:var(--genet);color:var(--cypres);padding:.6rem 1rem;z-index:100;font-weight:600}
+.skip:focus{left:.5rem;top:.5rem}
+.todo{background:#FFF1B8;color:#3D3200;padding:0 .25em;border-radius:3px}
+.contenu{width:min(100% - 2.5rem,76rem);margin-inline:auto}
+section{padding:5rem 0}
+.sombre{background:var(--cypres);color:var(--calcaire)}
+
+.maquette{background:var(--genet);color:var(--cypres);font-size:.85rem;text-align:center;padding:.4rem 1rem;font-weight:600}
+
+/* En-tête */
+.entete{position:sticky;top:0;z-index:50;background:var(--cypres);color:var(--calcaire)}
+.entete .contenu{display:flex;align-items:center;justify-content:space-between;gap:1rem;min-height:4rem}
+.logo{font-weight:800;font-size:1.3rem;text-decoration:none;letter-spacing:-.02em;white-space:nowrap;display:inline-flex;align-items:center;gap:.55rem}
+.logo img{width:2.6rem;height:2.6rem;clip-path:circle(44.5% at 50% 52%)}
+@media (max-width:440px){.entete .logo span{display:none}}
+.logo span{color:var(--feuille);font-weight:400}
+.nav{display:flex;align-items:center;gap:1.25rem}
+.nav ul{list-style:none;margin:0;padding:0;display:flex;gap:1.5rem}
+.nav ul a{text-decoration:none;font-weight:600}
+.nav ul a:hover{color:var(--genet)}
+.appel{background:var(--genet);color:var(--cypres);text-decoration:none;font-weight:800;padding:.65rem 1.1rem;border-radius:2rem;min-height:2.9rem;display:inline-flex;align-items:center}
+.appel:hover{background:#F6D27A}
+.burger{display:none;background:none;border:2px solid var(--calcaire);color:var(--calcaire);border-radius:2rem;width:3rem;height:3rem;cursor:pointer}
+@media (max-width:880px){
+  .burger{display:inline-grid;place-items:center}
+  .nav ul{display:none;position:absolute;top:100%;left:0;right:0;background:var(--cypres);flex-direction:column;gap:0;padding:.5rem 1.25rem 1.5rem;border-top:1px solid var(--cypres-2)}
+  .nav ul.ouvert{display:flex}
+  .nav ul a{display:block;font-size:1.6rem;font-weight:800;padding:.6rem 0}
+}
+
+/* Hero : photo pleine largeur, nom géant, racines qui se dessinent */
+.hero{position:relative;padding:0;background:var(--cypres);color:var(--calcaire);overflow:hidden}
+.hero-photo{position:relative;height:min(78vh,44rem);min-height:30rem}
+.hero-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(21,48,42,.35) 0%,rgba(21,48,42,.15) 40%,rgba(21,48,42,.92) 88%,#15302A 100%)}
+.hero-texte{position:absolute;left:0;right:0;bottom:0;z-index:2}
+.hero-lieu{font-weight:600;color:var(--genet);margin-bottom:.5rem;font-size:1.05rem}
+.hero h1{font-size:clamp(4.2rem,19vw,15rem);line-height:.82;margin:0;letter-spacing:-.045em}
+.hero h1 .metier{display:block;font-size:.22em;letter-spacing:-.01em;line-height:1.1;margin-top:.35em;font-weight:600;color:var(--calcaire)}
+.racines{display:block;width:100%;max-width:40rem;height:auto;margin:.25rem 0 1.5rem}
+.racines path{fill:none;stroke:var(--genet);stroke-width:3.2;stroke-linecap:round;stroke-dasharray:var(--l);stroke-dashoffset:var(--l);animation:pousse 2.2s cubic-bezier(.3,.6,.3,1) .4s forwards}
+.racines path:nth-child(n+4){stroke:var(--feuille);stroke-width:2;animation-delay:.9s}
+@keyframes pousse{to{stroke-dashoffset:0}}
+@media (prefers-reduced-motion:reduce){.racines path{stroke-dashoffset:0}}
+.hero-bas{display:grid;gap:1.5rem;padding:0 0 4rem}
+@media (min-width:860px){.hero-bas{grid-template-columns:1.3fr 1fr;align-items:end}}
+.hero-bas p{font-size:1.2rem;margin:0}
+.actions{display:flex;flex-wrap:wrap;gap:.75rem}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:3.2rem;padding:.8rem 1.4rem;border-radius:2rem;font:800 1.05rem var(--f);text-decoration:none;cursor:pointer;border:2px solid transparent}
+.btn-genet{background:var(--genet);color:var(--cypres)}
+.btn-genet:hover{background:#F6D27A}
+.btn-ligne{border-color:var(--calcaire);color:var(--calcaire);background:transparent}
+.btn-ligne:hover{background:var(--calcaire);color:var(--cypres)}
+.btn-cypres{background:var(--cypres);color:var(--calcaire)}
+.btn-cypres:hover{background:var(--cypres-2)}
+
+/* Services : grandes lignes typographiques */
+.services h2{max-width:12ch}
+.ligne-service{display:grid;gap:1.25rem;padding:2.5rem 0;border-top:3px solid var(--cypres)}
+.ligne-service:last-child{border-bottom:3px solid var(--cypres)}
+.ligne-service img{width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:1.5rem}
+@media (min-width:860px){
+  .ligne-service{grid-template-columns:1.1fr 1fr 1fr;gap:2.5rem;align-items:start}
+  .ligne-service h3{margin:0}
+}
+.ligne-service p:last-child{margin-bottom:0}
+.gris{color:var(--gris)}
+
+/* Signature : le jardin au fil des mois (présentation de la maquette A) */
+.saisons{background:#DFE6D5;color:var(--cypres)}
+.saisons :focus-visible{outline-color:var(--cypres)}
+.mois-liste{display:flex;gap:.45rem;overflow-x:auto;padding:.3rem .15rem 1rem;margin:2rem 0 1.25rem;scrollbar-width:thin}
+.mois-liste button{flex:none;min-width:4rem;min-height:3rem;padding:0 .7rem;border:2px solid var(--cypres);background:var(--calcaire);color:var(--cypres);border-radius:2rem;font:800 .95rem var(--f);cursor:pointer}
+.mois-liste button:hover{background:#fff}
+.mois-liste button[aria-selected="true"]{background:var(--cypres);color:var(--genet)}
+.mois-panneau{background:#fff;border-radius:1.5rem;padding:1.75rem;display:grid;gap:1.5rem}
+@media (min-width:820px){.mois-panneau{grid-template-columns:1fr 1.3fr;padding:2.5rem;gap:3rem}}
+.mois-panneau h3{margin-bottom:.4rem}
+.mois-meteo{color:var(--gris);font-size:1.15rem;margin:0}
+.mois-panneau h4{font:800 1.05rem var(--f);margin:0 0 .5rem}
+.mois-panneau ul{margin:0;padding:0;list-style:none}
+.mois-panneau li{padding:.65rem 0;border-bottom:1px solid #D5DCCB;font-size:1.08rem}
+.aide{background:var(--cypres);color:var(--calcaire);border-radius:1.25rem;padding:1.25rem 1.5rem;margin-top:1.5rem}
+.aide b{color:var(--genet);display:block;margin-bottom:.25rem}
+.aide p{margin:0}
+.dicton{margin-top:3rem;font-size:clamp(1.5rem,4vw,2.4rem);font-weight:800;line-height:1.15;max-width:24ch;letter-spacing:-.02em}
+.dicton small{display:block;font-size:1rem;font-weight:400;color:var(--gris);margin-top:.75rem;letter-spacing:0}
+
+/* À propos */
+.apropos .contenu{display:grid;gap:2.5rem;align-items:center}
+@media (min-width:860px){.apropos .contenu{grid-template-columns:1fr 1fr}}
+.apropos .logo-grand{width:min(100%,24rem);height:auto;margin-inline:auto;clip-path:circle(44.5% at 50% 52%)}
+
+/* Zone */
+.communes{list-style:none;margin:2rem 0 1rem;padding:0;display:flex;flex-wrap:wrap;gap:.1em .55em;font-size:clamp(1.6rem,6vw,3.6rem);font-weight:800;line-height:1.1;letter-spacing:-.02em}
+.communes li{color:var(--feuille)}
+.communes li.centre{color:var(--genet)}
+.horaires{display:grid;gap:1.5rem;margin-top:3rem;padding-top:2rem;border-top:1px solid var(--cypres-2)}
+@media (min-width:760px){.horaires{grid-template-columns:1fr 2fr}}
+.horaires h3{font-size:1.6rem;color:var(--calcaire)}
+
+/* Contact sur fond genêt */
+.contact{background:var(--genet);color:var(--cypres)}
+.contact .contenu{display:grid;gap:2.5rem}
+@media (min-width:900px){.contact .contenu{grid-template-columns:1.2fr 1fr}}
+.tel-geant{display:block;font-size:clamp(2.6rem,11vw,5.8rem);font-weight:800;letter-spacing:-.04em;line-height:1;text-decoration:none;margin:1rem 0 1.5rem}
+.tel-geant:hover{text-decoration:underline;text-decoration-thickness:4px}
+.coord p{margin:.3rem 0}
+form{background:var(--calcaire);border-radius:1.5rem;padding:1.75rem;display:grid;gap:1rem}
+label{display:block;font-weight:800;margin-bottom:.3rem}
+input,textarea{width:100%;font:inherit;color:var(--cypres);background:#fff;border:2px solid var(--cypres);border-radius:.75rem;padding:.75rem .9rem}
+textarea{min-height:8rem;resize:vertical}
+.form-note{font-size:.92rem;color:var(--gris);margin:0}
+.form-retour{margin:0;font-weight:800}
+
+.pied{background:var(--cypres);color:var(--calcaire);padding:3rem 0 2rem}
+.pied .contenu{display:grid;gap:1.5rem}
+@media (min-width:800px){.pied .contenu{grid-template-columns:2fr 1fr 1fr;align-items:end}}
+.pied .logo{font-size:2.6rem}
+.pied .logo img{width:4rem;height:4rem}
+.pied p{margin:.2rem 0;color:var(--feuille)}
+.pied a{color:var(--calcaire)}
+.mentions{background:#0F2420;color:var(--feuille);padding:2rem 0;font-size:.92rem}
+.mentions h2{font-size:1.2rem;color:var(--calcaire);letter-spacing:0}
+</style>
+</head>
+<body>
+<a class="skip" href="#contenu">Aller au contenu</a>
+<div class="maquette">Maquette C proposée à Racinea Paysage — aperçu non publié</div>
+
+<header class="entete">
+  <div class="contenu">
+    <a class="logo" href="#haut"><img src="../images/logo-instagram.jpg" width="40" height="40" alt="">Racinea <span>Paysage</span></a>
+    <nav class="nav" aria-label="Menu principal">
+      <button class="burger" aria-expanded="false" aria-controls="menu" aria-label="Ouvrir le menu">
+        <svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><path d="M3 7h16M3 15h16" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+      </button>
+      <ul id="menu">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#saisons">Au fil des mois</a></li>
+        <li><a href="#apropos">À propos</a></li>
+        <li><a href="#zone">Zone</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <a class="appel" href="tel:+33783889232">Appeler</a>
+    </nav>
+  </div>
+</header>
+
+<main id="contenu">
+  <section class="hero" id="haut">
+    <div class="hero-photo">
+      <img src="https://images.pexels.com/photos/14211552/pexels-photo-14211552.jpeg?auto=compress&cs=tinysrgb&w=1600&h=1000&fit=crop&dpr=1"
+           srcset="https://images.pexels.com/photos/14211552/pexels-photo-14211552.jpeg?auto=compress&cs=tinysrgb&w=800&h=1000&fit=crop&dpr=1 800w, https://images.pexels.com/photos/14211552/pexels-photo-14211552.jpeg?auto=compress&cs=tinysrgb&w=1600&h=1000&fit=crop&dpr=1 1600w"
+           sizes="100vw" width="1600" height="1000" fetchpriority="high"
+           alt="Jardin provençal à Bonnieux : buis taillés en boules et cyprès devant une maison en pierre">
+      <div class="hero-texte">
+        <div class="contenu">
+          <p class="hero-lieu">Entretien d'espaces verts</p>
+          <h1>Racinea<span class="metier">Avignon et alentours</span></h1>
+        </div>
+      </div>
+    </div>
+    <div class="contenu">
+      <svg class="racines" viewBox="0 0 600 120" aria-hidden="true">
+        <path d="M40 0 C46 30 30 55 48 80 S70 110 60 120"/>
+        <path d="M300 0 C292 28 318 50 305 82 S290 110 300 120"/>
+        <path d="M520 0 C528 32 505 58 522 88 S545 112 540 120"/>
+        <path d="M48 80 C80 88 100 100 120 120"/>
+        <path d="M42 40 C25 52 12 60 2 78"/>
+        <path d="M305 82 C340 90 360 102 380 118"/>
+        <path d="M298 30 C270 40 255 55 240 72"/>
+        <path d="M522 88 C490 95 470 105 455 120"/>
+        <path d="M518 45 C550 55 575 62 598 80"/>
+      </svg>
+    </div>
+    <div class="contenu hero-bas">
+      <p>L'entretien de vos jardins et espaces verts, au rythme du soleil, de la sécheresse et du mistral. Un seul interlocuteur : Paul.</p>
+      <div class="actions">
+        <a class="btn btn-genet" href="tel:+33783889232">Appeler le 07 83 88 92 32</a>
+        <a class="btn btn-ligne" href="#contact">Demander un devis</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="services clair" id="services">
+    <div class="contenu">
+      <h2>Ce que Racinea fait pour vous</h2>
+      <div class="ligne-service">
+        <h3>Entretenir</h3>
+        <div>
+          <p>Le cœur du métier de Racinea : un passage ponctuel ou un suivi à l'année, pour un jardin propre et en bonne santé à chaque saison.</p>
+          <p><mark class="todo">[À CONFIRMER : tonte, taille des haies, désherbage, ramassage des feuilles, contrat à l'année ?]</mark></p>
+        </div>
+        <img src="https://images.pexels.com/photos/38936350/pexels-photo-38936350.jpeg?auto=compress&cs=tinysrgb&w=640&h=400&fit=crop&dpr=1" width="640" height="400" loading="lazy" alt="Mains qui taillent une haie à la cisaille">
+      </div>
+      <div class="ligne-service">
+        <h3>Espaces verts</h3>
+        <div>
+          <p>Grandes propriétés, parcs, grands terrains : plus de surface, le même soin.</p>
+          <p><mark class="todo">[À CONFIRMER : pour quels clients — particuliers, copropriétés, entreprises, communes ?]</mark></p>
+        </div>
+        <img src="https://images.pexels.com/photos/28431880/pexels-photo-28431880.jpeg?auto=compress&cs=tinysrgb&w=640&h=400&fit=crop&dpr=1" width="640" height="400" loading="lazy" alt="Grande allée de gravier bordée de hauts arbres dans un parc">
+      </div>
+      <div class="ligne-service">
+        <h3>Petits aménagements</h3>
+        <div>
+          <p>Redonner vie à un massif fatigué, planter une haie, refaire un coin du jardin, avec des plantes qui tiennent l'été en Vaucluse.</p>
+          <p><mark class="todo">[À CONFIRMER : Racinea fait-il aussi de l'aménagement ? C'est indiqué sur PagesJaunes, pas sur Instagram]</mark></p>
+        </div>
+        <img src="https://images.pexels.com/photos/34909157/pexels-photo-34909157.jpeg?auto=compress&cs=tinysrgb&w=640&h=400&fit=crop&dpr=1" width="640" height="400" loading="lazy" alt="Allée en pas japonais posée dans du gravier clair">
+      </div>
+    </div>
+  </section>
+
+  <section class="saisons" id="saisons">
+    <div class="contenu">
+      <h2>Le jardin au fil des mois</h2>
+      <p>Autour d'Avignon, le jardin vit au rythme des étés secs, du mistral et des pluies d'automne. Choisissez un mois pour voir ce qui se passe au jardin et comment Racinea peut vous aider.</p>
+      <div class="mois-liste" role="tablist" aria-label="Choisir un mois"></div>
+      <div class="mois-panneau" role="tabpanel" id="mois-panneau" tabindex="0">
+        <div>
+          <h3 id="mois-nom">Novembre</h3>
+          <p class="mois-meteo" id="mois-meteo"></p>
+        </div>
+        <div>
+          <h4>Au jardin ce mois-ci</h4>
+          <ul id="mois-taches"></ul>
+          <div class="aide"><b>Racinea peut s'en charger</b><p id="mois-aide"></p></div>
+        </div>
+      </div>
+      <p class="dicton">« À la Sainte-Catherine, tout bois prend racine. »<small>Le 25 novembre, c'est le bon moment pour planter arbres et haies.</small></p>
+    </div>
+  </section>
+
+  <section class="apropos clair" id="apropos">
+    <div class="contenu">
+      <img class="logo-grand" src="../images/logo-instagram.jpg" width="389" height="400" loading="lazy" alt="Logo de Racinea Paysage : un R dont naissent des feuilles et des racines, avec la mention Entretien d'espaces verts">
+      <div>
+        <h2>Un jardin tient par ses racines</h2>
+        <p>Racinea Paysage, c'est l'entreprise de Paul Pegon, installée chemin des Mascarons à Morières-lès-Avignon. Quand vous appelez, c'est lui qui répond, qui vient voir votre terrain et qui suit le chantier.</p>
+        <p>Le logo le dit : un R qui pousse, avec ses feuilles en haut et ses racines en bas. Un jardin se soigne aussi par ce qu'on ne voit pas.</p>
+        <p><mark class="todo">[À COMPLÉTER : parcours de Paul, année de création, formation, ce qu'il aime faire]</mark></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="zone sombre" id="zone">
+    <div class="contenu">
+      <h2>Où intervient Racinea ?</h2>
+      <p>Avignon et ses alentours, depuis Morières-lès-Avignon.</p>
+      <ul class="communes">
+        <li class="centre">Morières-lès-Avignon</li>
+        <li>Avignon</li>
+        <li>Le Pontet</li>
+        <li>Vedène</li>
+        <li>Saint-Saturnin-lès-Avignon</li>
+        <li>Châteauneuf-de-Gadagne</li>
+        <li>Caumont-sur-Durance</li>
+      </ul>
+      <p><mark class="todo">[À CONFIRMER : liste exacte des communes et rayon d'intervention]</mark></p>
+      <div class="horaires">
+        <h3>Horaires</h3>
+        <div>
+          <p><mark class="todo">[À COMPLÉTER : jours et horaires d'ouverture]</mark></p>
+          <p>Le plus simple : appelez ou laissez un message, Paul vous rappelle.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="contenu">
+      <div>
+        <h2>Parlons de votre jardin</h2>
+        <a class="tel-geant" href="tel:+33783889232">07 83 88 92 32</a>
+        <div class="coord">
+          <p>72 chemin des Mascarons, 84310 Morières-lès-Avignon</p>
+          <p>Email : <a href="mailto:racineapaysage@gmail.com">racineapaysage@gmail.com</a></p>
+        </div>
+        <p style="margin-top:1.5rem"><a class="btn btn-cypres" href="https://www.google.com/maps/dir/?api=1&destination=72+chemin+des+Mascarons+84310+Morieres-les-Avignon" target="_blank" rel="noopener">Itinéraire</a></p>
+      </div>
+      <form id="formulaire" novalidate>
+        <div>
+          <label for="f-nom">Votre nom</label>
+          <input id="f-nom" name="nom" autocomplete="name" required>
+        </div>
+        <div>
+          <label for="f-tel">Votre téléphone</label>
+          <input id="f-tel" name="tel" type="tel" autocomplete="tel" inputmode="tel" required>
+        </div>
+        <div>
+          <label for="f-msg">Votre projet</label>
+          <textarea id="f-msg" name="message" required placeholder="Ex. : entretien d'un jardin de 500 m² à Vedène"></textarea>
+        </div>
+        <button class="btn btn-cypres" type="submit">Envoyer ma demande</button>
+        <p class="form-note">Votre demande s'ouvre dans votre messagerie, prête à envoyer à Racinea.</p>
+        <p class="form-retour" id="form-retour" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="pied">
+  <div class="contenu">
+    <div>
+      <a class="logo" href="#haut">Racinea <span>Paysage</span></a>
+      <p>Entretien d'espaces verts, Avignon et alentours</p>
+    </div>
+    <div>
+      <p><a href="tel:+33783889232">07 83 88 92 32</a></p>
+      <p><a href="mailto:racineapaysage@gmail.com">racineapaysage@gmail.com</a></p>
+      <p><a href="https://www.instagram.com/racineapaysage/" target="_blank" rel="noopener">Instagram : @racineapaysage</a></p>
+    </div>
+    <div>
+      <p><a href="#mentions">Mentions légales</a></p>
+      <p>Site réalisé par Studio APA</p>
+    </div>
+  </div>
+</footer>
+<section class="mentions" id="mentions" aria-labelledby="mentions-titre">
+  <div class="contenu">
+    <h2 id="mentions-titre">Mentions légales</h2>
+    <p>Éditeur : <mark class="todo">[À COMPLÉTER : raison sociale, forme juridique, SIRET]</mark>, 72 chemin des Mascarons, 84310 Morières-lès-Avignon. Responsable de la publication : Paul Pegon Rouchon.</p>
+    <p>Hébergeur : <mark class="todo">[À COMPLÉTER : hébergeur]</mark>. Logo : Racinea Paysage. Photos : Pexels (illustrations, à remplacer par les photos des chantiers de Racinea).</p>
+  </div>
+</section>
+
+<script>
+// Racines : longueur de chaque trait pour l'animation de pousse
+document.querySelectorAll('.racines path').forEach(p=>p.style.setProperty('--l',Math.ceil(p.getTotalLength())));
+
+// Menu mobile
+const burger=document.querySelector('.burger'),menu=document.getElementById('menu');
+const fermer=()=>{menu.classList.remove('ouvert');burger.setAttribute('aria-expanded','false');burger.setAttribute('aria-label','Ouvrir le menu')};
+burger.addEventListener('click',()=>{const o=menu.classList.toggle('ouvert');burger.setAttribute('aria-expanded',o);burger.setAttribute('aria-label',o?'Fermer le menu':'Ouvrir le menu')});
+menu.addEventListener('click',e=>{if(e.target.closest('a'))fermer()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&menu.classList.contains('ouvert')){fermer();burger.focus()}});
+
+// Le jardin au fil des mois (Vaucluse)
+const MOIS=[
+ ["Janvier","Froid sec, gelées, mistral glacé.",["Tailler les arbres fruitiers et les arbustes hors période de gel","Planter les arbres à racines nues si le sol n'est pas gelé","Protéger les plantes fragiles du vent"],"Taille d'hiver des arbres et des arbustes."],
+ ["Février","Les jours rallongent, le sol reste froid.",["Tailler les rosiers en fin de mois","Préparer les massifs et apporter du compost","Pailler le pied des arbustes"],"Nettoyage et paillage des massifs."],
+ ["Mars","La végétation repart.",["Reprendre la tonte","Planter les vivaces et les arbustes","Vérifier l'arrosage automatique avant l'été"],"Reprise de la tonte et remise en état du jardin."],
+ ["Avril","Douceur et giboulées.",["Désherber avant que les herbes montent en graines","Planter les plantes méditerranéennes en godets","Tailler les arbustes qui ont fleuri en hiver"],"Désherbage et taille après floraison."],
+ ["Mai","Déjà chaud l'après-midi.",["Dernières plantations avant la chaleur","Pailler pour garder l'humidité du sol","Tondre régulièrement, sans couper trop court"],"Tonte régulière et entretien des massifs."],
+ ["Juin","La chaleur s'installe.",["Arroser tôt le matin ou le soir","Relever la hauteur de tonte","Surveiller les plantes nouvellement installées"],"Entretien d'été, tonte et désherbage."],
+ ["Juillet","Sécheresse, restrictions d'eau possibles.",["Arroser au pied, jamais en plein soleil","Respecter les arrêtés sécheresse de la préfecture","Éviter de planter : on attend l'automne"],"Passages d'entretien adaptés à la chaleur."],
+ ["Août","Chaud et sec, le jardin se repose.",["Ramasser les fruits tombés","Garder le paillage en place","Préparer les projets de l'automne"],"Nettoyage et ramassage pendant l'été."],
+ ["Septembre","Retour des premières pluies.",["Regarnir ou semer le gazon","Tailler les haies","Nettoyer les massifs après l'été"],"Taille des haies et remise en état après l'été."],
+ ["Octobre","Le meilleur moment pour planter.",["Planter arbres, arbustes et vivaces : les racines s'installent avant l'été","Diviser les vivaces","Ramasser les premières feuilles"],"Nettoyage d'automne et ramassage des feuilles."],
+ ["Novembre","Sainte-Catherine le 25.",["Planter les haies et les arbres","Ramasser les feuilles et les composter","Rentrer ou protéger les plantes en pot sensibles au froid"],"Ramassage des feuilles et taille."],
+ ["Décembre","Le jardin dort, place aux projets.",["Élaguer pendant le repos de la végétation","Tailler pour donner une forme aux jeunes arbres","Dessiner les projets du printemps"],"Taille des arbres pendant le repos de la végétation."]
+];
+const COURT=['Janv.','Févr.','Mars','Avril','Mai','Juin','Juil.','Août','Sept.','Oct.','Nov.','Déc.'];
+const liste=document.querySelector('.mois-liste');
+MOIS.forEach((m,i)=>{const b=document.createElement('button');b.type='button';b.setAttribute('role','tab');b.id='onglet-'+i;b.textContent=COURT[i];b.setAttribute('aria-label',m[0]);b.setAttribute('aria-controls','mois-panneau');b.addEventListener('click',()=>choisir(i));liste.appendChild(b)});
+function choisir(i,focus){
+  const m=MOIS[i];
+  liste.querySelectorAll('button').forEach((b,j)=>{b.setAttribute('aria-selected',j===i);b.tabIndex=j===i?0:-1});
+  document.getElementById('mois-nom').textContent=m[0];
+  document.getElementById('mois-meteo').textContent=m[1];
+  document.getElementById('mois-taches').innerHTML=m[2].map(t=>'<li>'+t+'</li>').join('');
+  document.getElementById('mois-aide').textContent=m[3];
+  document.getElementById('mois-panneau').setAttribute('aria-labelledby','onglet-'+i);
+  const b=liste.children[i];liste.scrollLeft+=b.getBoundingClientRect().left-liste.getBoundingClientRect().left-(liste.clientWidth-b.offsetWidth)/2;if(focus)b.focus({preventScroll:true});
+}
+liste.addEventListener('keydown',e=>{const i=[...liste.children].indexOf(document.activeElement);if(i<0)return;let n=null;if(e.key==='ArrowRight')n=(i+1)%12;if(e.key==='ArrowLeft')n=(i+11)%12;if(e.key==='Home')n=0;if(e.key==='End')n=11;if(n!==null){e.preventDefault();choisir(n,true)}});
+choisir(new Date().getMonth());
+
+// Formulaire : ouvre un email si l'adresse est connue, sinon un SMS vers Racinea
+const EMAIL='racineapaysage@gmail.com';
+document.getElementById('formulaire').addEventListener('submit',e=>{
+  e.preventDefault();
+  const f=e.target,retour=document.getElementById('form-retour');
+  const vides=[...f.querySelectorAll('[required]')].filter(c=>!c.value.trim());
+  f.querySelectorAll('[required]').forEach(c=>c.setAttribute('aria-invalid',!c.value.trim()));
+  if(vides.length){retour.textContent='Merci de remplir : '+vides.map(c=>f.querySelector('label[for="'+c.id+'"]').textContent.toLowerCase()).join(', ')+'.';vides[0].focus();return}
+  const texte='Bonjour, je suis '+f.nom.value.trim()+' ('+f.tel.value.trim()+').\n'+f.message.value.trim();
+  location.href=EMAIL?'mailto:'+EMAIL+'?subject='+encodeURIComponent('Demande de devis jardin')+'&body='+encodeURIComponent(texte):'sms:+33783889232?&body='+encodeURIComponent(texte);
+  retour.textContent='Votre messagerie s\'ouvre avec votre demande. Il ne reste qu\'à l\'envoyer.';
+});
+</script>
+</body>
+</html>
