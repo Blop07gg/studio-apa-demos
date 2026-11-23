@@ -177,7 +177,7 @@
 
   /* ---------- Cours : créneaux lus dans le planning ---------- */
   var ordre = [1, 2, 3, 4, 5, 6, 0];
-  document.querySelectorAll(".c").forEach(function (c) {
+  document.querySelectorAll(".fiche[data-cours]").forEach(function (c) {
     var code = c.getAttribute("data-cours");
     var morceaux = [];
     ordre.forEach(function (n) {
@@ -191,26 +191,52 @@
       cible.textContent = "Au planning : " + txt.charAt(0).toUpperCase() + txt.slice(1) + ".";
     }
   });
-  document.querySelectorAll(".lien-planning").forEach(function (b) {
+  /* ---------- Fiches (cours et coachs) : fenêtre avec photo ---------- */
+  var retourFocus = true;
+  document.querySelectorAll("[data-fiche]").forEach(function (b) {
+    var dlg = document.getElementById(b.getAttribute("data-fiche"));
+    b.setAttribute("aria-haspopup", "dialog");
     b.addEventListener("click", function () {
-      appliquerFiltre(b.getAttribute("data-voir"));
+      retourFocus = true;
+      if (typeof dlg.showModal === "function") dlg.showModal();
+      else dlg.setAttribute("open", "");
+    });
+    // clic sur le fond sombre = fermer
+    dlg.addEventListener("click", function (e) { if (e.target === dlg) dlg.close(); });
+    dlg.addEventListener("close", function () { if (retourFocus) b.focus(); });
+  });
+
+  // "Voir au planning" dans une fiche de cours : ferme, filtre, descend au planning
+  document.querySelectorAll(".fiche [data-voir]").forEach(function (b) {
+    b.addEventListener("click", function () {
+      var code = b.getAttribute("data-voir");
+      retourFocus = false;
+      b.closest("dialog").close();
+      appliquerFiltre(code);
       document.getElementById("planning").scrollIntoView();
-      var f = document.querySelector('.filtre[data-filtre="' + b.getAttribute("data-voir") + '"]');
+      var f = document.querySelector('.filtre[data-filtre="' + code + '"]');
       if (f) f.focus({ preventScroll: true });
     });
   });
 
-  /* ---------- Coachs : fiches ---------- */
-  document.querySelectorAll(".membre").forEach(function (b) {
-    var dlg = document.getElementById(b.getAttribute("data-dialog"));
-    b.setAttribute("aria-haspopup", "dialog");
+  /* ---------- Galerie du club : boutons précédent / suivant ---------- */
+  var galerie = document.querySelector(".galerie");
+  var btnsGalerie = document.querySelectorAll(".galerie__btn");
+  function majGalerie() {
+    var max = galerie.scrollWidth - galerie.clientWidth - 2;
+    btnsGalerie[0].disabled = galerie.scrollLeft <= 2;
+    btnsGalerie[1].disabled = galerie.scrollLeft >= max;
+  }
+  btnsGalerie.forEach(function (b) {
     b.addEventListener("click", function () {
-      if (typeof dlg.showModal === "function") dlg.showModal();
-      else dlg.setAttribute("open", "");
+      var item = galerie.querySelector(".galerie__item");
+      var pas = item ? item.getBoundingClientRect().width + 16 : galerie.clientWidth * .8;
+      galerie.scrollBy({ left: pas * +b.getAttribute("data-sens") });
     });
-    dlg.addEventListener("click", function (e) { if (e.target === dlg) dlg.close(); });
-    dlg.addEventListener("close", function () { b.focus(); });
   });
+  galerie.addEventListener("scroll", function () { window.requestAnimationFrame(majGalerie); }, { passive: true });
+  window.addEventListener("resize", majGalerie);
+  majGalerie();
 
   /* ---------- Formulaire ---------- */
   var form = document.getElementById("form-contact");
