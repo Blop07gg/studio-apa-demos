@@ -1,41 +1,125 @@
-/* Studio APA — scripts du site (vanilla, sans dépendance) */
+/* Orvo Studio — JS vanilla, aucune librairie */
 (function () {
   'use strict';
 
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var euro = function (n) {
-    return new Intl.NumberFormat('fr-FR', { maximumFractionDigits: 0 }).format(n) + ' €';
-  };
+  var desktop = window.matchMedia('(min-width: 900px)');
+  var root = document.documentElement;
 
-  /* ---------- Menu mobile ---------- */
-  var toggle = document.querySelector('.nav-toggle');
-  var nav = document.getElementById('menu');
-  if (toggle && nav) {
-    var setOpen = function (open) {
-      toggle.setAttribute('aria-expanded', String(open));
-      nav.classList.toggle('is-open', open);
-    };
-    toggle.addEventListener('click', function () {
-      setOpen(toggle.getAttribute('aria-expanded') !== 'true');
+  /* ---------- En-tête : bordure, barre de lecture, se cache en descendant ---------- */
+  var header = document.querySelector('[data-header]');
+  var progress = document.querySelector('[data-progress]');
+  var hero = document.querySelector('[data-hero]');
+  var heroMark = hero && hero.querySelector('.hero__mark');
+  var lastY = window.scrollY;
+  var ticking = false;
+  var menuOpen = false;
+
+  function onScroll() {
+    var y = window.scrollY;
+    if (header) {
+      header.classList.toggle('is-scrolled', y > 8);
+      // On cache l'en-tête quand on descend, il revient dès qu'on remonte
+      var goingDown = y > lastY + 4;
+      var goingUp = y < lastY - 4;
+      if (!menuOpen && goingDown && y > 480) header.classList.add('is-hidden');
+      if (goingUp || y < 480) header.classList.remove('is-hidden');
+    }
+    if (progress) {
+      var max = document.documentElement.scrollHeight - window.innerHeight;
+      progress.style.setProperty('--p', max > 0 ? Math.min(y / max, 1).toFixed(4) : 0);
+    }
+    if (heroMark && !reduceMotion && y < window.innerHeight * 1.2) {
+      heroMark.style.setProperty('--sy', Math.round(y));
+    }
+    lastY = y;
+    ticking = false;
+  }
+  window.addEventListener('scroll', function () {
+    if (!ticking) { ticking = true; requestAnimationFrame(onScroll); }
+  }, { passive: true });
+  onScroll();
+
+  // Un lien d'ancre ou le focus clavier dans l'en-tête le fait réapparaître
+  if (header) {
+    header.addEventListener('focusin', function () { header.classList.remove('is-hidden'); });
+  }
+
+  /* ---------- Hero : le grand « O » suit doucement la souris ---------- */
+  if (hero && heroMark && !reduceMotion && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    hero.addEventListener('pointermove', function (e) {
+      var r = hero.getBoundingClientRect();
+      heroMark.style.setProperty('--mx', ((e.clientX - r.left) / r.width - 0.5).toFixed(3));
+      heroMark.style.setProperty('--my', ((e.clientY - r.top) / r.height - 0.5).toFixed(3));
     });
-    nav.addEventListener('click', function (e) {
-      if (e.target.closest('a')) setOpen(false);
-    });
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') {
-        setOpen(false);
-        toggle.focus();
-      }
+    hero.addEventListener('pointerleave', function () {
+      heroMark.style.setProperty('--mx', 0);
+      heroMark.style.setProperty('--my', 0);
     });
   }
 
-  /* ---------- Année du pied de page ---------- */
-  var year = document.getElementById('year');
-  if (year) year.textContent = new Date().getFullYear();
+  /* ---------- Menu burger ---------- */
+  var burger = document.querySelector('[data-burger]');
+  var menu = document.querySelector('[data-menu]');
+
+  function setMenu(open) {
+    if (!burger || !menu) return;
+    menuOpen = open;
+    burger.setAttribute('aria-expanded', String(open));
+    burger.querySelector('.visually-hidden').textContent = open ? 'Fermer le menu' : 'Menu';
+    menu.classList.toggle('is-open', open);
+    if (open && header) header.classList.remove('is-hidden');
+  }
+  if (burger && menu) {
+    burger.addEventListener('click', function () {
+      setMenu(burger.getAttribute('aria-expanded') !== 'true');
+    });
+    menu.addEventListener('click', function (e) {
+      if (e.target.closest('a') && !desktop.matches) setMenu(false);
+    });
+    // Toucher en dehors du menu le referme
+    document.addEventListener('click', function (e) {
+      if (menuOpen && !e.target.closest('[data-header]')) setMenu(false);
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && menuOpen) {
+        setMenu(false);
+        burger.focus();
+      }
+    });
+    desktop.addEventListener('change', function () { setMenu(false); });
+  }
+
+  /* ---------- Menu : le lien de la section en cours est souligné ---------- */
+  var navLinks = document.querySelectorAll('.nav__link');
+  if ('IntersectionObserver' in window && navLinks.length) {
+    var byId = {};
+    navLinks.forEach(function (a) { byId[a.getAttribute('href').slice(1)] = a; });
+    var spy = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        var link = byId[entry.target.id];
+        if (!link) return;
+        if (entry.isIntersecting) {
+          navLinks.forEach(function (a) { a.classList.remove('is-current'); a.removeAttribute('aria-current'); });
+          link.classList.add('is-current');
+          link.setAttribute('aria-current', 'true');
+        } else if (link.classList.contains('is-current')) {
+          link.classList.remove('is-current');
+          link.removeAttribute('aria-current');
+        }
+      });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    Object.keys(byId).forEach(function (id) {
+      var section = document.getElementById(id);
+      if (section) spy.observe(section);
+    });
+  }
 
   /* ---------- Apparition au scroll ---------- */
-  var revealEls = document.querySelectorAll('[data-reveal]');
-  if ('IntersectionObserver' in window && !reduceMotion) {
+  var reveals = document.querySelectorAll('.reveal');
+  if (reduceMotion || !('IntersectionObserver' in window)) {
+    reveals.forEach(function (el) { el.classList.add('is-visible'); });
+  } else {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
@@ -43,180 +127,172 @@
           io.unobserve(entry.target);
         }
       });
-    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.1 });
-    revealEls.forEach(function (el) { io.observe(el); });
-  } else {
-    revealEls.forEach(function (el) { el.classList.add('is-visible'); });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
+    reveals.forEach(function (el) { io.observe(el); });
   }
 
-  /* ---------- Calculateur de devis ---------- */
-  var calc = document.getElementById('calc-form');
-  if (calc) {
-    var linesEl = document.getElementById('quote-lines');
-    var totalEl = document.getElementById('quote-total');
-    var depositEl = document.getElementById('quote-deposit');
-    var monthlyRow = document.getElementById('quote-monthly-row');
-    var monthlyEl = document.getElementById('quote-monthly');
-    var dateEl = document.getElementById('quote-date');
-    var sendBtn = document.getElementById('quote-send');
-    var shownTotal = 0;
-    var rafId = null;
-
-    if (dateEl) {
-      dateEl.textContent = new Intl.DateTimeFormat('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' }).format(new Date());
-    }
-
-    var selection = function () {
-      var items = [];
-      calc.querySelectorAll('input[name="pack"]:checked, input[name="option"]:checked').forEach(function (input) {
-        items.push({ key: input.value, label: input.dataset.label, price: Number(input.dataset.price) });
+  /* ---------- Services : un seul ouvert à la fois, la scène bleue suit ---------- */
+  var svc = document.querySelector('[data-svc]');
+  if (svc) {
+    var items = svc.querySelectorAll('.svc__item');
+    var scenes = svc.querySelectorAll('[data-scene]');
+    function openSvc(i) {
+      items.forEach(function (it, j) {
+        var on = j === i;
+        it.classList.toggle('is-active', on);
+        it.querySelector('[data-svc-btn]').setAttribute('aria-expanded', String(on));
       });
-      var m = calc.querySelector('input[name="maintenance"]');
-      return { items: items, monthly: m && m.checked ? Number(m.dataset.price) : 0 };
-    };
-
-    var renderLines = function (items) {
-      var wanted = items.map(function (i) { return i.key; });
-      // retire les lignes décochées (avec une courte animation)
-      linesEl.querySelectorAll('.quote-line').forEach(function (li) {
-        if (wanted.indexOf(li.dataset.key) === -1 && !li.classList.contains('is-leaving')) {
-          if (reduceMotion) { li.remove(); return; }
-          li.classList.add('is-leaving');
-          li.addEventListener('animationend', function () { li.remove(); }, { once: true });
+      scenes.forEach(function (sc, j) { sc.classList.toggle('is-active', j === i); });
+    }
+    // Clic seulement : l'ouverture au survol faisait bouger la liste sous la souris
+    items.forEach(function (it, i) {
+      it.querySelector('[data-svc-btn]').addEventListener('click', function () {
+        // Un deuxième clic referme le service (sauf sur ordinateur, où la scène a besoin d'un service ouvert)
+        if (it.classList.contains('is-active') && !desktop.matches) {
+          it.classList.remove('is-active');
+          it.querySelector('[data-svc-btn]').setAttribute('aria-expanded', 'false');
+        } else {
+          openSvc(i);
         }
       });
-      // ajoute les nouvelles lignes, dans l'ordre du formulaire
-      items.forEach(function (item, index) {
-        var existing = linesEl.querySelector('.quote-line[data-key="' + item.key + '"]:not(.is-leaving)');
-        if (existing) return;
-        var li = document.createElement('li');
-        li.className = 'quote-line';
-        li.dataset.key = item.key;
-        li.innerHTML = '<span class="label"></span><span class="leader" aria-hidden="true"></span><span class="amount"></span>';
-        li.querySelector('.label').textContent = item.label;
-        li.querySelector('.amount').textContent = euro(item.price);
-        // les formules remplacent la formule précédente en tête de liste
-        var current = linesEl.querySelectorAll('.quote-line:not(.is-leaving)');
-        var before = current[index] || null;
-        linesEl.insertBefore(li, before);
-      });
-    };
-
-    var animateTotal = function (target) {
-      if (rafId) cancelAnimationFrame(rafId);
-      if (reduceMotion) { shownTotal = target; totalEl.textContent = euro(target); return; }
-      var start = shownTotal;
-      var t0 = performance.now();
-      var dur = 450;
-      var step = function (now) {
-        var p = Math.min(1, (now - t0) / dur);
-        var eased = 1 - Math.pow(1 - p, 3);
-        shownTotal = Math.round(start + (target - start) * eased);
-        totalEl.textContent = euro(shownTotal);
-        if (p < 1) rafId = requestAnimationFrame(step);
-      };
-      rafId = requestAnimationFrame(step);
-      totalEl.classList.remove('bump');
-      void totalEl.offsetWidth; // relance l'animation
-      totalEl.classList.add('bump');
-    };
-
-    var update = function (animate) {
-      var sel = selection();
-      var total = sel.items.reduce(function (sum, i) { return sum + i.price; }, 0);
-      renderLines(sel.items);
-      if (animate) {
-        animateTotal(total);
-      } else {
-        shownTotal = total;
-        totalEl.textContent = euro(total);
-      }
-      depositEl.textContent = euro(Math.ceil(total / 2));
-      monthlyRow.hidden = !sel.monthly;
-      monthlyEl.textContent = euro(sel.monthly) + ' / mois';
-      calc.dataset.summary = sel.items.map(function (i) { return '- ' + i.label + ' : ' + euro(i.price); }).join('\n') +
-        (sel.monthly ? '\n- Maintenance : ' + euro(sel.monthly) + ' / mois' : '') +
-        '\nTotal estimé : ' + euro(total);
-    };
-
-    calc.addEventListener('change', function () { update(true); });
-    update(false);
-
-    // « Envoyer cette demande » : pré-remplit le message du formulaire de contact
-    if (sendBtn) {
-      sendBtn.addEventListener('click', function () {
-        var msg = document.getElementById('message');
-        if (msg) {
-          var intro = 'Bonjour, je souhaite un devis pour :\n' + calc.dataset.summary + '\n\nMon activité : ';
-          if (!msg.value.trim() || msg.value.indexOf('Bonjour, je souhaite un devis pour') === 0) {
-            msg.value = intro;
-          }
-          setTimeout(function () { msg.focus({ preventScroll: true }); }, reduceMotion ? 0 : 600);
-        }
-      });
-    }
-  }
-
-  /* ---------- Formulaire de contact (Netlify Forms) ---------- */
-  var form = document.getElementById('contact-form');
-  if (form) {
-    var status = document.getElementById('form-status');
-    var rules = [
-      { id: 'nom', test: function (v) { return v.trim().length > 1; }, msg: 'Indiquez votre nom.' },
-      { id: 'email', test: function (v) { return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()); }, msg: 'Indiquez une adresse email valide, par exemple nom@domaine.fr.' },
-      { id: 'message', test: function (v) { return v.trim().length > 9; }, msg: 'Écrivez quelques mots sur votre projet (10 caractères minimum).' },
-      { id: 'rgpd', check: true, msg: 'Cochez cette case pour que nous puissions vous répondre.' }
-    ];
-
-    var validate = function () {
-      var firstInvalid = null;
-      rules.forEach(function (r) {
-        var el = document.getElementById(r.id);
-        var ok = r.check ? el.checked : r.test(el.value);
-        el.setAttribute('aria-invalid', String(!ok));
-        document.getElementById(r.id + '-err').textContent = ok ? '' : r.msg;
-        if (!ok && !firstInvalid) firstInvalid = el;
-      });
-      return firstInvalid;
-    };
-
-    form.addEventListener('input', function (e) {
-      if (e.target.getAttribute('aria-invalid') === 'true') validate();
     });
+    // Sur téléphone, tout est fermé au départ : on lit les titres, on ouvre ce qui intéresse
+    if (!desktop.matches) {
+      items.forEach(function (it) {
+        it.classList.remove('is-active');
+        it.querySelector('[data-svc-btn]').setAttribute('aria-expanded', 'false');
+      });
+    }
+    // Les scènes se jouent quand on arrive sur la section, et se rejouent à chaque retour
+    if (reduceMotion || !('IntersectionObserver' in window)) {
+      svc.classList.add('is-playing');
+    } else {
+      new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) svc.classList.add('is-playing');
+          else if (entry.intersectionRatio === 0) svc.classList.remove('is-playing');
+        });
+      }, { threshold: [0, 0.35] }).observe(svc.querySelector('.svc__stage'));
+    }
+  }
 
+  /* ---------- Tarifs : carte choisie, options et estimation ---------- */
+  var offers = document.querySelector('[data-offers]');
+  var extras = document.querySelector('[data-extras]');
+  if (offers) {
+    var offerEls = offers.querySelectorAll('.offer');
+    var current = offers.querySelector('.offer.is-selected') || offerEls[0];
+    var totalOut = document.querySelector('[data-total]');
+    var monthlyOut = document.querySelector('[data-monthly-out]');
+    var recapOut = document.querySelector('[data-recap]');
+    var optionInputs = extras ? extras.querySelectorAll('.extra__input') : [];
+    var lastPrefill = '';
+
+    function summary() {
+      var total = Number(current.dataset.price);
+      var monthly = 0;
+      var parts = [current.dataset.name + ' (' + current.dataset.price + ' €)'];
+      optionInputs.forEach(function (o) {
+        if (!o.checked) return;
+        if (o.hasAttribute('data-monthly')) { monthly += Number(o.value); parts.push(o.dataset.name + ' (' + o.value + ' €/mois)'); }
+        else { total += Number(o.value); parts.push(o.dataset.name + ' (+' + o.value + ' €)'); }
+      });
+      return { total: total, monthly: monthly, parts: parts };
+    }
+    function render() {
+      if (!totalOut) return;
+      var s = summary();
+      totalOut.textContent = s.total.toLocaleString('fr-FR');
+      monthlyOut.hidden = s.monthly === 0;
+      monthlyOut.textContent = ' + ' + s.monthly + '\u00a0€/mois';
+      recapOut.textContent = s.parts.map(function (p) { return p.replace(/ \(.*\)$/, ''); }).join(' · ');
+    }
+    function selectOffer(el) {
+      current = el;
+      offerEls.forEach(function (o) { o.classList.toggle('is-selected', o === el); });
+      render();
+    }
+    // Pré-remplit le formulaire avec la formule choisie (sans écraser ce que le visiteur a écrit)
+    function prefill() {
+      var s = summary();
+      var type = document.getElementById('f-type');
+      var msg = document.getElementById('f-msg');
+      if (type) type.value = current.dataset.type;
+      if (msg && (msg.value.trim() === '' || msg.value === lastPrefill)) {
+        lastPrefill = 'Formule : ' + s.parts.join(', ') + '.\nEstimation : ' + s.total + ' €' + (s.monthly ? ' + ' + s.monthly + ' €/mois' : '') + '.\n\nMon activité : ';
+        msg.value = lastPrefill;
+      }
+    }
+    offerEls.forEach(function (o) {
+      o.addEventListener('click', function () { selectOffer(o); });
+      o.addEventListener('focusin', function () { selectOffer(o); });
+      var btn = o.querySelector('.btn');
+      if (btn) btn.addEventListener('click', function () { selectOffer(o); prefill(); });
+    });
+    optionInputs.forEach(function (o) { o.addEventListener('change', render); });
+    var quoteBtn = document.querySelector('[data-quote]');
+    if (quoteBtn) quoteBtn.addEventListener('click', prefill);
+    render();
+  }
+
+  /* ---------- Formulaire : messages d'erreur clairs ---------- */
+  var form = document.querySelector('[data-form]');
+  if (form) {
+    var submitBtn = form.querySelector('[data-submit]');
+    var checks = [
+      { id: 'f-nom', ok: function (el) { return el.value.trim() !== ''; } },
+      { id: 'f-email', ok: function (el) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value.trim()); } },
+      { id: 'f-msg', ok: function (el) { return el.value.trim() !== ''; } },
+      { id: 'f-rgpd', ok: function (el) { return el.checked; } }
+    ];
+    function validate(c) {
+      var el = document.getElementById(c.id);
+      var err = document.getElementById(c.id + '-err');
+      var valid = c.ok(el);
+      el.setAttribute('aria-invalid', valid ? 'false' : 'true');
+      if (valid) { el.removeAttribute('aria-describedby'); } else { el.setAttribute('aria-describedby', c.id + '-err'); }
+      err.hidden = valid;
+      return valid;
+    }
     form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      var invalid = validate();
-      if (invalid) { invalid.focus(); return; }
-
-      if (form.dataset.demo === 'true') {
-        status.className = 'form-status is-ok';
-        status.textContent = 'Version de démonstration : le formulaire est valide, mais l’envoi ne sera actif qu’une fois le site en ligne sur Netlify.';
-        status.hidden = false;
+      var firstInvalid = null;
+      checks.forEach(function (c) {
+        if (!validate(c) && !firstInvalid) firstInvalid = document.getElementById(c.id);
+      });
+      if (firstInvalid) {
+        e.preventDefault();
+        firstInvalid.focus();
+        if (!reduceMotion && submitBtn) {
+          submitBtn.classList.remove('is-shaking');
+          void submitBtn.offsetWidth; // relance l'animation
+          submitBtn.classList.add('is-shaking');
+        }
         return;
       }
-
-      var btn = form.querySelector('button[type="submit"]');
-      btn.disabled = true;
-      btn.textContent = 'Envoi en cours…';
-      status.hidden = true;
-
-      fetch('/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams(new FormData(form)).toString()
-      }).then(function (res) {
-        if (!res.ok) throw new Error('HTTP ' + res.status);
-        form.reset();
-        status.className = 'form-status is-ok';
-        status.textContent = 'Message envoyé. On vous répond rapidement, par email ou par téléphone.';
-      }).catch(function () {
-        status.className = 'form-status is-error';
-        status.textContent = 'Le message n’a pas pu être envoyé. Réessayez dans un instant, ou écrivez-nous directement par email.';
-      }).then(function () {
-        status.hidden = false;
-        btn.disabled = false;
-        btn.textContent = 'Envoyer ma demande';
+      // DÉMO (GitHub Pages) : pas d'envoi réel
+      e.preventDefault();
+      var note = form.querySelector('.demo-note');
+      if (!note) { note = document.createElement('p'); note.className = 'demo-note'; note.setAttribute('role', 'status'); form.appendChild(note); }
+      note.textContent = "Ceci est une démo : le formulaire n'envoie rien. Il fonctionnera sur le vrai site.";
+      return;
+      if (submitBtn) {
+        submitBtn.setAttribute('disabled', '');
+        submitBtn.firstChild.textContent = 'Envoi en cours…';
+      }
+    });
+    // Si le visiteur revient en arrière depuis la page « merci », le bouton redevient utilisable
+    window.addEventListener('pageshow', function () {
+      if (submitBtn) {
+        submitBtn.removeAttribute('disabled');
+        submitBtn.firstChild.textContent = 'Envoyer ma demande';
+      }
+    });
+    checks.forEach(function (c) {
+      var el = document.getElementById(c.id);
+      // Re-vérifie pendant la saisie (et non au blur) : sinon le message qui disparaît
+      // décale la page au moment où l'on clique sur le champ suivant.
+      el.addEventListener(el.type === 'checkbox' ? 'change' : 'input', function () {
+        if (el.getAttribute('aria-invalid') === 'true') validate(c);
       });
     });
   }
