@@ -403,17 +403,20 @@ a, button, summary, label[for], select { cursor: pointer; }
 @media (min-width: 900px) { .offer { padding: 32px 28px; } }
 @media (max-width: 599px) { .offer .btn { align-self: stretch; } }
 
-.facts { list-style: none; margin: 40px 0 12px; padding: 0; display: grid; border-top: 1px solid var(--line); }
-.facts li { display: flex; justify-content: space-between; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--line); font-size: 0.9375rem; color: var(--grey); text-align: right; }
-.facts b { color: var(--black); font-weight: 600; text-align: left; }
-@media (min-width: 900px) {
-  .facts { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; padding-top: 20px; }
-  .facts li { flex-direction: column; gap: 2px; padding: 0; border: 0; text-align: left; }
 }
 
 /* ---------- Options et estimation ---------- */
-.extras { margin-top: 40px; }
-.extras__title { margin-bottom: 12px; font-size: 1.125rem; }
+.extras { margin-top: 48px; }
+/* Les 3 étapes du devis : formule, options, estimation */
+.step { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; font-size: 1.125rem; }
+.step__n { display: grid; place-items: center; flex: none; width: 30px; height: 30px; border-radius: 50%; background: var(--blue); color: var(--white); font-size: 0.9375rem; font-weight: 800; }
+.step__opt { font-family: var(--body); font-size: 0.9375rem; font-weight: 400; color: var(--grey); }
+.step--in { margin-bottom: 6px; font-size: 1rem; }
+.step--in .step__n { width: 26px; height: 26px; font-size: 0.875rem; }
+/* Infos pratiques, discrètes, sous l'estimation */
+.terms { list-style: none; margin: 20px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 20px; font-size: 0.875rem; color: var(--grey); }
+.terms li { display: flex; align-items: center; gap: 8px; }
+.terms li::before { content: ""; width: 4px; height: 4px; border-radius: 50%; background: #9AA3BC; }
 .extras__list { list-style: none; margin: 0; padding: 0; border: 1.5px solid #C5CBDB; border-radius: var(--radius); overflow: hidden; }
 .extra { position: relative; display: grid; grid-template-columns: 22px minmax(0, 1fr) auto; align-items: start; gap: 14px; padding: 16px 18px; border-top: 1px solid var(--line); transition: background-color .2s ease; }
 .extra:first-child { border-top: 0; }
@@ -426,7 +429,6 @@ a, button, summary, label[for], select { cursor: pointer; }
 .extra__price { font-weight: 600; color: var(--blue); white-space: nowrap; }
 .extra__input { position: relative; z-index: 1; }
 .estimate { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 24px; margin-top: 16px; padding: 20px 18px; border-radius: var(--radius); background: var(--tint); }
-.estimate__k { font-size: 0.875rem; color: var(--grey); }
 .estimate__total { font-family: var(--head); font-weight: 800; font-size: 2rem; letter-spacing: -0.035em; line-height: 1.15; color: var(--black); }
 .estimate__monthly { font-size: 1.125rem; letter-spacing: -0.02em; color: var(--blue); }
 .estimate__recap { font-size: 0.875rem; color: var(--grey); }
@@ -530,6 +532,10 @@ a, button, summary, label[for], select { cursor: pointer; }
   .hero__mark { transform: translateY(-50%); }
   *, *::before, *::after { transition-duration: 0.01ms !important; transition-delay: 0s !important; animation-duration: 0.01ms !important; animation-delay: 0s !important; animation-iteration-count: 1 !important; }
 }
+
+/* Bouton « Choisir » des cartes de tarifs */
+.offer.is-selected .offer__pick::before { content: ""; width: 10px; height: 6px; margin: -3px 2px 0 0; border-left: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: rotate(-45deg); }
+.no-js .offer__pick { display: none; }
 
 /* Démo uniquement */
 .demo-note { padding: 12px 14px; border-radius: 8px; background: var(--tint); color: var(--black); font-size: .9375rem; }

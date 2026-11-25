@@ -209,7 +209,15 @@
     }
     function selectOffer(el) {
       current = el;
-      offerEls.forEach(function (o) { o.classList.toggle('is-selected', o === el); });
+      offerEls.forEach(function (o) {
+        var on = o === el;
+        o.classList.toggle('is-selected', on);
+        var pick = o.querySelector('.offer__pick');
+        if (pick) {
+          pick.textContent = on ? 'Formule choisie' : 'Choisir';
+          pick.setAttribute('aria-pressed', String(on));
+        }
+      });
       render();
     }
     // Pré-remplit le formulaire avec la formule choisie (sans écraser ce que le visiteur a écrit)
@@ -226,10 +234,16 @@
     offerEls.forEach(function (o) {
       o.addEventListener('click', function () { selectOffer(o); });
       o.addEventListener('focusin', function () { selectOffer(o); });
-      var btn = o.querySelector('.btn');
-      if (btn) btn.addEventListener('click', function () { selectOffer(o); prefill(); });
+      // « Choisir » : on sélectionne la formule et on passe à l'étape 2 (les options)
+      var pick = o.querySelector('.offer__pick');
+      if (pick) pick.addEventListener('click', function (e) {
+        e.stopPropagation();
+        selectOffer(o);
+        if (extras) extras.scrollIntoView({ block: 'start' });
+      });
     });
     optionInputs.forEach(function (o) { o.addEventListener('change', render); });
+    selectOffer(current);
     var quoteBtn = document.querySelector('[data-quote]');
     if (quoteBtn) quoteBtn.addEventListener('click', prefill);
     render();

@@ -29,7 +29,7 @@
 
   <link rel="preload" href="fonts/manrope-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="css/style.css?v=11">
+  <link rel="stylesheet" href="css/style.css?v=12">
   <script>document.documentElement.classList.remove('no-js');document.documentElement.classList.add('js');</script>
 
     <script type="application/ld+json">
@@ -257,38 +257,33 @@
         <h2 id="tarifs-title">Tarifs</h2>
         <p>Prix fixé avant de commencer. Aucun abonnement obligatoire.</p>
       </div>
+      <h3 class="step reveal"><span class="step__n" aria-hidden="true">1</span>Choisissez votre formule</h3>
       <div class="offers reveal" data-offers>
         <article class="offer" data-name="Site une page" data-price="300" data-type="Création de site">
           <h3>Site une page</h3>
           <p class="offer__price">300&nbsp;€</p>
           <p class="offer__desc">1 page, formulaire, hébergement inclus.</p>
           <p class="offer__time">En ligne en 1 à 2 semaines</p>
-          <a class="btn btn--outline" href="#contact">Demander un devis</a>
+          <button class="btn btn--outline offer__pick" type="button">Choisir</button>
         </article>
         <article class="offer is-selected" data-name="Site complet" data-price="500" data-type="Création de site">
           <h3>Site complet</h3>
           <p class="offer__price">500&nbsp;€</p>
           <p class="offer__desc">Jusqu'à 5 pages, hébergement inclus.</p>
           <p class="offer__time">En ligne en 2 à 3 semaines</p>
-          <a class="btn btn--outline" href="#contact">Demander un devis</a>
+          <button class="btn btn--outline offer__pick" type="button">Choisir</button>
         </article>
         <article class="offer" data-name="Refonte" data-price="200" data-type="Refonte de site">
           <h3>Refonte</h3>
           <p class="offer__price">200&nbsp;€</p>
           <p class="offer__desc">Nouveau design, même adresse web.</p>
           <p class="offer__time">Délai fixé sur le devis</p>
-          <a class="btn btn--outline" href="#contact">Demander un devis</a>
+          <button class="btn btn--outline offer__pick" type="button">Choisir</button>
         </article>
       </div>
 
-      <ul class="facts reveal">
-        <li><b>Hébergement</b>inclus</li>
-        <li><b>Nom de domaine</b>10 à 15&nbsp;€ par an</li>
-        <li><b>Paiement</b>50&nbsp;% + 50&nbsp;%</li>
-      </ul>
-
       <div class="extras reveal" data-extras>
-        <h3 class="extras__title">Options</h3>
+        <h3 class="step"><span class="step__n" aria-hidden="true">2</span>Ajoutez des options <span class="step__opt">(facultatif)</span></h3>
         <ul class="extras__list">
           <li class="extra">
             <input class="extra__input" type="checkbox" id="opt-blog" value="80" data-name="Blog / actualités">
@@ -318,15 +313,20 @@
         </ul>
         <div class="estimate" data-estimate>
           <div class="estimate__sum">
-            <p class="estimate__k">Votre estimation</p>
+            <h3 class="step step--in"><span class="step__n" aria-hidden="true">3</span>Votre estimation</h3>
             <p class="estimate__total" aria-live="polite"><span data-total>500</span>&nbsp;€<span class="estimate__monthly" data-monthly-out hidden> + 15&nbsp;€/mois</span></p>
             <p class="estimate__recap" data-recap>Site complet</p>
           </div>
           <a class="btn btn--primary" href="#contact" data-quote>Demander ce devis<span class="btn__arrow" aria-hidden="true"></span></a>
         </div>
       </div>
+      <ul class="terms">
+        <li>Hébergement inclus</li>
+        <li>Nom de domaine : 10 à 15&nbsp;€ par an</li>
+        <li>Paiement : 50&nbsp;% à la commande, 50&nbsp;% à la livraison</li>
       <!-- À COMPLÉTER : vérifier avec votre comptable que la franchise en base de TVA s'applique -->
-      <p class="small">Prix nets. TVA non applicable, article 293 B du CGI.</p>
+        <li>Prix nets, TVA non applicable (art. 293 B du CGI)</li>
+      </ul>
     </div>
   </section>
 
@@ -439,6 +439,6 @@
   </div>
 </footer>
 
-<script src="js/main.js?v=11" defer></script>
+<script src="js/main.js?v=12" defer></script>
 </body>
 </html>
