@@ -176,7 +176,7 @@
     }
   }
 
-  /* ---------- Tarifs : carte choisie, options et estimation ---------- */
+  /* ---------- Tarifs : formule, options, estimation, simulation dans le formulaire ---------- */
   var offers = document.querySelector('[data-offers]');
   var extras = document.querySelector('[data-extras]');
   if (offers) {
@@ -186,49 +186,56 @@
     var monthlyOut = document.querySelector('[data-monthly-out]');
     var recapOut = document.querySelector('[data-recap]');
     var optionInputs = extras ? extras.querySelectorAll('.extra__input') : [];
-    var lastPrefill = '';
     var typeSelect = document.getElementById('f-type');
-    var msgField = document.getElementById('f-msg');
+    var simBox = document.querySelector('[data-sim]');
+    var simField = document.getElementById('f-sim');
+    var shownTotal = Number(current.dataset.price);
+    var imported = false;
 
+    function fr(n) { return n.toLocaleString('fr-FR').replace(/\s/g, '\u00a0'); } // espace normale (l'espace fine passe mal)
+    function euros(n) { return fr(n) + '\u00a0€'; }
     function summary() {
-      var total = Number(current.dataset.price);
-      var monthly = 0;
-      var hasMonthly = false;
-      var parts = [current.dataset.name + ' (' + current.dataset.price + ' €)'];
+      var s = { total: Number(current.dataset.price), monthly: 0, hasMonthly: false, options: [], monthlyItems: [] };
       optionInputs.forEach(function (o) {
         if (!o.checked) return;
-        if (o.hasAttribute('data-monthly')) { hasMonthly = true; monthly += Number(o.value); parts.push(o.dataset.name + ' (' + o.value + ' €/mois)'); }
-        else { total += Number(o.value); parts.push(o.dataset.name + ' (+' + o.value + ' €)'); }
+        var v = Number(o.value);
+        if (o.hasAttribute('data-monthly')) { s.hasMonthly = true; s.monthly += v; s.monthlyItems.push(o.dataset.name + ' (' + v + ' €/mois)'); }
+        else { s.total += v; s.options.push(o.dataset.name + ' (+' + v + ' €)'); }
       });
-      return { total: total, monthly: monthly, hasMonthly: hasMonthly, parts: parts };
+      return s;
+    }
+    // Texte de la simulation envoyé avec le formulaire
+    function simulationText(s) {
+      var pad = function (k) { return k + ' : '; };
+      var lines = ['SIMULATION DE DEVIS · ORVO STUDIO', ''];
+      lines.push(pad('Formule') + current.dataset.name + ' (' + euros(Number(current.dataset.price)) + ')');
+      if (s.options.length) { lines.push('Options :'); s.options.forEach(function (o) { lines.push('• ' + o); }); }
+      else lines.push(pad('Options') + 'aucune');
+      lines.push(pad('Mensuel') + (s.monthlyItems.length ? s.monthlyItems.join(', ') : 'aucun'));
+      lines.push('');
+      lines.push(pad('TOTAL ESTIMÉ') + euros(s.total) + (s.hasMonthly ? ' + ' + s.monthly + ' €/mois' : ''));
+      return lines.join('\n');
+    }
+    // Le total défile jusqu'au nouveau montant
+    var anim = null;
+    function animateTotal(to) {
+      if (anim) cancelAnimationFrame(anim);
+      var from = shownTotal; shownTotal = to;
+      if (reduceMotion || from === to) { totalOut.textContent = fr(to); return; }
+      var start = performance.now();
+      (function step(now) {
+        var t = Math.min((now - start) / 450, 1);
+        var eased = 1 - Math.pow(1 - t, 3);
+        totalOut.textContent = fr(Math.round(from + (to - from) * eased));
+        if (t < 1) anim = requestAnimationFrame(step);
+      })(start);
     }
     function render() {
-      if (!totalOut) return;
       var s = summary();
-      totalOut.textContent = s.total.toLocaleString('fr-FR');
-      monthlyOut.hidden = !s.hasMonthly;
-      monthlyOut.textContent = ' + ' + s.monthly + '\u00a0€/mois';
-      recapOut.textContent = s.parts.map(function (p) { return p.replace(/ \(.*\)$/, ''); }).join(' · ');
-      syncMessage();
-    }
-    // Récapitulatif dans le message : rempli dès que le client a fait un choix,
-    // mis à jour à chaque changement, jamais écrit par-dessus son propre texte.
-    var touched = false;
-    function isFormula() {
-      if (!typeSelect) return true;
-      for (var i = 0; i < offerEls.length; i++) if (offerEls[i].dataset.name === typeSelect.value) return true;
-      return false;
-    }
-    function syncMessage() {
-      if (!touched || !msgField) return;
-      if (msgField.value.trim() !== '' && msgField.value !== lastPrefill) return; // texte du client : on n'y touche pas
-      if (isFormula()) writeMessage(summary());
-      else { msgField.value = ''; lastPrefill = ''; } // « Question », « Je ne sais pas encore »… : message libre
-    }
-    function touch() { touched = true; syncMessage(); }
-    function writeMessage(s) {
-      lastPrefill = 'Formule : ' + s.parts.join(', ') + '.\nEstimation : ' + s.total + ' €' + (s.hasMonthly ? ' + ' + s.monthly + ' €/mois' : '') + '.\n\nMon activité : ';
-      msgField.value = lastPrefill;
+      if (totalOut) animateTotal(s.total);
+      if (monthlyOut) { monthlyOut.hidden = !s.hasMonthly; monthlyOut.textContent = ' + ' + s.monthly + ' €/mois'; }
+      if (recapOut) recapOut.textContent = [current.dataset.name].concat(s.options, s.monthlyItems).map(function (p) { return p.replace(/ \(.*\)$/, ''); }).join(' · ');
+      if (imported && simField) { simField.value = simulationText(s); fitSim(); } // la simulation reste à jour
     }
     function selectOffer(el) {
       current = el;
@@ -236,43 +243,52 @@
         var on = o === el;
         o.classList.toggle('is-selected', on);
         var pick = o.querySelector('.offer__pick');
-        if (pick) {
-          pick.textContent = on ? 'Formule choisie' : 'Choisir';
-          pick.setAttribute('aria-pressed', String(on));
-        }
+        if (pick) { pick.textContent = on ? 'Formule choisie' : 'Choisir'; pick.setAttribute('aria-pressed', String(on)); }
       });
-      // Le menu « Type de projet » du formulaire suit la carte choisie
       if (typeSelect) typeSelect.value = el.dataset.name;
       render();
     }
-    // Pré-remplit le formulaire avec la formule choisie (sans écraser ce que le visiteur a écrit)
-    function prefill() {
-      if (typeSelect) typeSelect.value = current.dataset.name;
-      touch();
+    function fitSim() { simField.style.height = 'auto'; simField.style.height = simField.scrollHeight + 4 + 'px'; }
+    // La simulation arrive dans le formulaire dès le premier choix du client
+    function showSimulation() {
+      if (!simBox || !simField) return;
+      imported = true;
+      simField.value = simulationText(summary());
+      if (simBox.hidden) {
+        simBox.hidden = false;
+        simBox.classList.remove('is-in'); void simBox.offsetWidth; simBox.classList.add('is-in');
+      }
+      fitSim();
     }
+    // « Demander ce devis » : on descend au formulaire et on place le curseur sur « Nom »
+    function importSimulation() {
+      if (!simBox || !simField) return;
+      showSimulation();
+      if (typeSelect) typeSelect.value = current.dataset.name;
+      setTimeout(function () { var nom = document.getElementById('f-nom'); if (nom) nom.focus({ preventScroll: true }); }, reduceMotion ? 0 : 700);
+    }
+
     offerEls.forEach(function (o) {
-      o.addEventListener('click', function () { selectOffer(o); touch(); });
+      o.addEventListener('click', function () { selectOffer(o); showSimulation(); });
       o.addEventListener('focusin', function () { selectOffer(o); });
-      // « Choisir » : on sélectionne la formule et on passe à l'étape 2 (les options)
       var pick = o.querySelector('.offer__pick');
       if (pick) pick.addEventListener('click', function (e) {
         e.stopPropagation();
         selectOffer(o);
-        touch();
+        showSimulation();
         if (extras) extras.scrollIntoView({ block: 'start' });
       });
     });
-    optionInputs.forEach(function (o) { o.addEventListener('change', function () { touched = true; render(); }); });
-    // Et dans l'autre sens : changer le menu du formulaire change la carte choisie
+    optionInputs.forEach(function (o) { o.addEventListener('change', function () { render(); showSimulation(); }); });
     if (typeSelect) typeSelect.addEventListener('change', function () {
-      touched = true;
-      offerEls.forEach(function (o) { if (o.dataset.name === typeSelect.value) selectOffer(o); });
-      syncMessage();
+      offerEls.forEach(function (o) { if (o.dataset.name === typeSelect.value) { selectOffer(o); showSimulation(); } });
     });
-    selectOffer(current);
     var quoteBtn = document.querySelector('[data-quote]');
-    if (quoteBtn) quoteBtn.addEventListener('click', prefill);
-    render();
+    if (quoteBtn) quoteBtn.addEventListener('click', importSimulation);
+    // « Modifier » : on remonte aux tarifs
+    var simEdit = document.querySelector('[data-sim-edit]');
+    if (simEdit) simEdit.addEventListener('click', function () { (extras || offers).scrollIntoView({ block: 'start' }); });
+    selectOffer(current);
   }
 
   /* ---------- Formulaire : messages d'erreur clairs ---------- */

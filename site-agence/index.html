@@ -29,7 +29,7 @@
 
   <link rel="preload" href="fonts/manrope-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="css/style.css?v=15">
+  <link rel="stylesheet" href="css/style.css?v=17">
   <script>document.documentElement.classList.remove('no-js');document.documentElement.classList.add('js');</script>
 
     <script type="application/ld+json">
@@ -58,7 +58,7 @@
     ],
     "email": "orvostudio@gmail.com",
     "telephone": "+33658887727",
-    "priceRange": "200 € – 500 €",
+    "priceRange": "200 € – 3 000 €",
     "knowsLanguage": "fr"
   }
   </script>
@@ -280,33 +280,52 @@
           <p class="offer__time">Délai fixé sur le devis</p>
           <button class="btn btn--outline offer__pick" type="button">Choisir</button>
         </article>
+        <!-- À VÉRIFIER : formule reprise de Digital Shift, à confirmer avant mise en ligne (capacité à livrer, délai) -->
+        <article class="offer" data-name="Site e-commerce" data-price="3000">
+          <h3>Site e-commerce</h3>
+          <p class="offer__price">3&nbsp;000&nbsp;€</p>
+          <p class="offer__desc">Boutique en ligne, paiement sécurisé.</p>
+          <p class="offer__time">Délai fixé sur le devis</p>
+          <button class="btn btn--outline offer__pick" type="button">Choisir</button>
+        </article>
       </div>
 
       <div class="extras reveal" data-extras>
         <h3 class="step">Ajoutez des options <span class="step__opt">(facultatif)</span></h3>
         <ul class="extras__list">
           <li class="extra">
-            <input class="extra__input" type="checkbox" id="opt-blog" value="80" data-name="Blog / actualités">
+            <input class="extra__input" type="checkbox" role="switch" id="opt-blog" value="80" data-name="Blog / actualités">
             <label class="extra__label" for="opt-blog"><b>Blog / actualités</b><span>Publiez vos nouveautés vous-même.</span></label>
             <span class="extra__price">+ 80&nbsp;€</span>
           </li>
           <li class="extra">
-            <input class="extra__input" type="checkbox" id="opt-rdv" value="80" data-name="Prise de rendez-vous">
+            <input class="extra__input" type="checkbox" role="switch" id="opt-rdv" value="80" data-name="Prise de rendez-vous">
             <label class="extra__label" for="opt-rdv"><b>Prise de rendez-vous en ligne</b><span>Vos clients réservent un créneau depuis le site.</span></label>
             <span class="extra__price">+ 80&nbsp;€</span>
           </li>
           <li class="extra">
-            <input class="extra__input" type="checkbox" id="opt-fren" value="10" data-name="Version bilingue">
+            <input class="extra__input" type="checkbox" role="switch" id="opt-fren" value="10" data-name="Version bilingue">
             <label class="extra__label" for="opt-fren"><b>Version bilingue FR / EN</b><span>Contenu traduit et adapté en anglais.</span></label>
             <span class="extra__price">+ 10&nbsp;€</span>
           </li>
           <li class="extra">
-            <input class="extra__input" type="checkbox" id="opt-maps" value="30" data-name="Google Maps">
+            <input class="extra__input" type="checkbox" role="switch" id="opt-maps" value="30" data-name="Google Maps">
             <label class="extra__label" for="opt-maps"><b>Google Maps</b><span>Carte d'accès et aide pour votre fiche Google.</span></label>
             <span class="extra__price">+ 30&nbsp;€</span>
           </li>
+          <!-- À VÉRIFIER : shooting et Google Ads repris de Digital Shift (il faut un photographe partenaire et savoir gérer des campagnes) -->
           <li class="extra">
-            <input class="extra__input" type="checkbox" id="opt-maint" value="0" data-name="Maintenance" data-monthly>
+            <input class="extra__input" type="checkbox" role="switch" id="opt-photo" value="150" data-name="Shooting photo et vidéo">
+            <label class="extra__label" for="opt-photo"><b>Shooting photo &amp; vidéo</b><span>Séance de 2&nbsp;h chez vous avec un photographe partenaire.</span></label>
+            <span class="extra__price">+ 150&nbsp;€</span>
+          </li>
+          <li class="extra">
+            <input class="extra__input" type="checkbox" role="switch" id="opt-ads" value="80" data-name="Campagne Google Ads" data-monthly>
+            <label class="extra__label" for="opt-ads"><b>Campagne Google Ads gérée</b><span>Vos annonces en tête de Google. Budget publicitaire non inclus.</span></label>
+            <span class="extra__price">+ 80&nbsp;€/mois</span>
+          </li>
+          <li class="extra">
+            <input class="extra__input" type="checkbox" role="switch" id="opt-maint" value="0" data-name="Maintenance" data-monthly>
             <label class="extra__label" for="opt-maint"><b>Maintenance</b><span>Mises à jour, sauvegardes, petites modifications. Sans engagement.</span></label>
             <span class="extra__price">0&nbsp;€/mois</span>
           </li>
@@ -404,6 +423,7 @@
             <option value="Site une page">Site une page (300 €)</option>
             <option value="Site complet" selected>Site complet (500 €)</option>
             <option value="Refonte">Refonte (200 €)</option>
+            <option value="Site e-commerce">Site e-commerce (3 000 €)</option>
             <option value="Maintenance">Maintenance</option>
             <option value="Question">Question</option>
             <option value="Je ne sais pas encore">Je ne sais pas encore</option>
@@ -413,6 +433,11 @@
           <label for="f-msg">Message <span class="req">(obligatoire)</span></label>
           <textarea id="f-msg" name="message" rows="5" required></textarea>
           <p class="field__error" id="f-msg-err" hidden>Écrivez quelques mots sur votre projet.</p>
+        </div>
+        <div class="field sim" data-sim hidden>
+          <label for="f-sim">Votre simulation de devis</label>
+          <textarea id="f-sim" name="simulation-devis" rows="8" readonly></textarea>
+          <p class="sim__note">Simulation importée depuis les tarifs. <button class="sim__edit" type="button" data-sim-edit>Modifier</button></p>
         </div>
         <div class="check">
           <input id="f-rgpd" name="consentement" type="checkbox" value="oui" required>
@@ -440,6 +465,6 @@
   </div>
 </footer>
 
-<script src="js/main.js?v=15" defer></script>
+<script src="js/main.js?v=17" defer></script>
 </body>
 </html>
