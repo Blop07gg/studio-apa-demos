@@ -187,6 +187,8 @@
     var recapOut = document.querySelector('[data-recap]');
     var optionInputs = extras ? extras.querySelectorAll('.extra__input') : [];
     var lastPrefill = '';
+    var typeSelect = document.getElementById('f-type');
+    var msgField = document.getElementById('f-msg');
 
     function summary() {
       var total = Number(current.dataset.price);
@@ -207,6 +209,12 @@
       monthlyOut.hidden = !s.hasMonthly;
       monthlyOut.textContent = ' + ' + s.monthly + '\u00a0€/mois';
       recapOut.textContent = s.parts.map(function (p) { return p.replace(/ \(.*\)$/, ''); }).join(' · ');
+      // Si le message pré-rempli n'a pas été modifié, il suit les choix
+      if (msgField && lastPrefill && msgField.value === lastPrefill) writeMessage(s);
+    }
+    function writeMessage(s) {
+      lastPrefill = 'Formule : ' + s.parts.join(', ') + '.\nEstimation : ' + s.total + ' €' + (s.hasMonthly ? ' + ' + s.monthly + ' €/mois' : '') + '.\n\nMon activité : ';
+      msgField.value = lastPrefill;
     }
     function selectOffer(el) {
       current = el;
@@ -219,18 +227,14 @@
           pick.setAttribute('aria-pressed', String(on));
         }
       });
+      // Le menu « Type de projet » du formulaire suit la carte choisie
+      if (typeSelect) typeSelect.value = el.dataset.name;
       render();
     }
     // Pré-remplit le formulaire avec la formule choisie (sans écraser ce que le visiteur a écrit)
     function prefill() {
-      var s = summary();
-      var type = document.getElementById('f-type');
-      var msg = document.getElementById('f-msg');
-      if (type) type.value = current.dataset.type;
-      if (msg && (msg.value.trim() === '' || msg.value === lastPrefill)) {
-        lastPrefill = 'Formule : ' + s.parts.join(', ') + '.\nEstimation : ' + s.total + ' €' + (s.hasMonthly ? ' + ' + s.monthly + ' €/mois' : '') + '.\n\nMon activité : ';
-        msg.value = lastPrefill;
-      }
+      if (typeSelect) typeSelect.value = current.dataset.name;
+      if (msgField && (msgField.value.trim() === '' || msgField.value === lastPrefill)) writeMessage(summary());
     }
     offerEls.forEach(function (o) {
       o.addEventListener('click', function () { selectOffer(o); });
@@ -244,6 +248,10 @@
       });
     });
     optionInputs.forEach(function (o) { o.addEventListener('change', render); });
+    // Et dans l'autre sens : changer le menu du formulaire change la carte choisie
+    if (typeSelect) typeSelect.addEventListener('change', function () {
+      offerEls.forEach(function (o) { if (o.dataset.name === typeSelect.value) selectOffer(o); });
+    });
     selectOffer(current);
     var quoteBtn = document.querySelector('[data-quote]');
     if (quoteBtn) quoteBtn.addEventListener('click', prefill);

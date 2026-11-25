@@ -29,7 +29,7 @@
 
   <link rel="preload" href="fonts/manrope-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="css/style.css?v=13">
+  <link rel="stylesheet" href="css/style.css?v=14">
   <script>document.documentElement.classList.remove('no-js');document.documentElement.classList.add('js');</script>
 
     <script type="application/ld+json">
@@ -259,21 +259,21 @@
       </div>
       <h3 class="step reveal">Choisissez votre formule</h3>
       <div class="offers reveal" data-offers>
-        <article class="offer" data-name="Site une page" data-price="300" data-type="Création de site">
+        <article class="offer" data-name="Site une page" data-price="300">
           <h3>Site une page</h3>
           <p class="offer__price">300&nbsp;€</p>
           <p class="offer__desc">1 page, formulaire, hébergement inclus.</p>
           <p class="offer__time">En ligne en 1 à 2 semaines</p>
           <button class="btn btn--outline offer__pick" type="button">Choisir</button>
         </article>
-        <article class="offer is-selected" data-name="Site complet" data-price="500" data-type="Création de site">
+        <article class="offer is-selected" data-name="Site complet" data-price="500">
           <h3>Site complet</h3>
           <p class="offer__price">500&nbsp;€</p>
           <p class="offer__desc">Jusqu'à 5 pages, hébergement inclus.</p>
           <p class="offer__time">En ligne en 2 à 3 semaines</p>
           <button class="btn btn--outline offer__pick" type="button">Choisir</button>
         </article>
-        <article class="offer" data-name="Refonte" data-price="200" data-type="Refonte de site">
+        <article class="offer" data-name="Refonte" data-price="200">
           <h3>Refonte</h3>
           <p class="offer__price">200&nbsp;€</p>
           <p class="offer__desc">Nouveau design, même adresse web.</p>
@@ -401,8 +401,9 @@
         <div class="field">
           <label for="f-type">Type de projet</label>
           <select id="f-type" name="type-de-projet">
-            <option value="Création de site">Création de site</option>
-            <option value="Refonte de site">Refonte de site existant</option>
+            <option value="Site une page">Site une page (300 €)</option>
+            <option value="Site complet" selected>Site complet (500 €)</option>
+            <option value="Refonte">Refonte (200 €)</option>
             <option value="Maintenance">Maintenance</option>
             <option value="Question">Question</option>
             <option value="Je ne sais pas encore">Je ne sais pas encore</option>
@@ -439,6 +440,6 @@
   </div>
 </footer>
 
-<script src="js/main.js?v=13" defer></script>
+<script src="js/main.js?v=14" defer></script>
 </body>
 </html>
