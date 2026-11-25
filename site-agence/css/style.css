@@ -403,16 +403,12 @@ a, button, summary, label[for], select { cursor: pointer; }
 @media (min-width: 900px) { .offer { padding: 32px 28px; } }
 @media (max-width: 599px) { .offer .btn { align-self: stretch; } }
 
-}
-
 /* ---------- Options et estimation ---------- */
-.extras { margin-top: 48px; }
-/* Les 3 étapes du devis : formule, options, estimation */
-.step { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; font-size: 1.125rem; }
-.step__n { display: grid; place-items: center; flex: none; width: 30px; height: 30px; border-radius: 50%; background: var(--blue); color: var(--white); font-size: 0.9375rem; font-weight: 800; }
-.step__opt { font-family: var(--body); font-size: 0.9375rem; font-weight: 400; color: var(--grey); }
-.step--in { margin-bottom: 6px; font-size: 1rem; }
-.step--in .step__n { width: 26px; height: 26px; font-size: 0.875rem; }
+.extras { margin-top: clamp(56px, 8vw, 80px); }
+/* Titres du devis : formule, options, estimation */
+.step { margin-bottom: 20px; font-size: 1.25rem; letter-spacing: -0.02em; }
+.step__opt { margin-left: 6px; font-family: var(--body); font-size: 0.9375rem; font-weight: 400; letter-spacing: 0; color: var(--grey); }
+.step--in { margin-bottom: 4px; font-family: var(--body); font-size: 0.875rem; font-weight: 500; letter-spacing: 0; color: var(--grey); }
 /* Infos pratiques, discrètes, sous l'estimation */
 .terms { list-style: none; margin: 20px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 20px; font-size: 0.875rem; color: var(--grey); }
 .terms li { display: flex; align-items: center; gap: 8px; }

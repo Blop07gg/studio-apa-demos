@@ -191,19 +191,20 @@
     function summary() {
       var total = Number(current.dataset.price);
       var monthly = 0;
+      var hasMonthly = false;
       var parts = [current.dataset.name + ' (' + current.dataset.price + ' €)'];
       optionInputs.forEach(function (o) {
         if (!o.checked) return;
-        if (o.hasAttribute('data-monthly')) { monthly += Number(o.value); parts.push(o.dataset.name + ' (' + o.value + ' €/mois)'); }
+        if (o.hasAttribute('data-monthly')) { hasMonthly = true; monthly += Number(o.value); parts.push(o.dataset.name + ' (' + o.value + ' €/mois)'); }
         else { total += Number(o.value); parts.push(o.dataset.name + ' (+' + o.value + ' €)'); }
       });
-      return { total: total, monthly: monthly, parts: parts };
+      return { total: total, monthly: monthly, hasMonthly: hasMonthly, parts: parts };
     }
     function render() {
       if (!totalOut) return;
       var s = summary();
       totalOut.textContent = s.total.toLocaleString('fr-FR');
-      monthlyOut.hidden = s.monthly === 0;
+      monthlyOut.hidden = !s.hasMonthly;
       monthlyOut.textContent = ' + ' + s.monthly + '\u00a0€/mois';
       recapOut.textContent = s.parts.map(function (p) { return p.replace(/ \(.*\)$/, ''); }).join(' · ');
     }
@@ -227,7 +228,7 @@
       var msg = document.getElementById('f-msg');
       if (type) type.value = current.dataset.type;
       if (msg && (msg.value.trim() === '' || msg.value === lastPrefill)) {
-        lastPrefill = 'Formule : ' + s.parts.join(', ') + '.\nEstimation : ' + s.total + ' €' + (s.monthly ? ' + ' + s.monthly + ' €/mois' : '') + '.\n\nMon activité : ';
+        lastPrefill = 'Formule : ' + s.parts.join(', ') + '.\nEstimation : ' + s.total + ' €' + (s.hasMonthly ? ' + ' + s.monthly + ' €/mois' : '') + '.\n\nMon activité : ';
         msg.value = lastPrefill;
       }
     }
