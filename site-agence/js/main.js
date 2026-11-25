@@ -209,9 +209,23 @@
       monthlyOut.hidden = !s.hasMonthly;
       monthlyOut.textContent = ' + ' + s.monthly + '\u00a0€/mois';
       recapOut.textContent = s.parts.map(function (p) { return p.replace(/ \(.*\)$/, ''); }).join(' · ');
-      // Si le message pré-rempli n'a pas été modifié, il suit les choix
-      if (msgField && lastPrefill && msgField.value === lastPrefill) writeMessage(s);
+      syncMessage();
     }
+    // Récapitulatif dans le message : rempli dès que le client a fait un choix,
+    // mis à jour à chaque changement, jamais écrit par-dessus son propre texte.
+    var touched = false;
+    function isFormula() {
+      if (!typeSelect) return true;
+      for (var i = 0; i < offerEls.length; i++) if (offerEls[i].dataset.name === typeSelect.value) return true;
+      return false;
+    }
+    function syncMessage() {
+      if (!touched || !msgField) return;
+      if (msgField.value.trim() !== '' && msgField.value !== lastPrefill) return; // texte du client : on n'y touche pas
+      if (isFormula()) writeMessage(summary());
+      else { msgField.value = ''; lastPrefill = ''; } // « Question », « Je ne sais pas encore »… : message libre
+    }
+    function touch() { touched = true; syncMessage(); }
     function writeMessage(s) {
       lastPrefill = 'Formule : ' + s.parts.join(', ') + '.\nEstimation : ' + s.total + ' €' + (s.hasMonthly ? ' + ' + s.monthly + ' €/mois' : '') + '.\n\nMon activité : ';
       msgField.value = lastPrefill;
@@ -234,23 +248,26 @@
     // Pré-remplit le formulaire avec la formule choisie (sans écraser ce que le visiteur a écrit)
     function prefill() {
       if (typeSelect) typeSelect.value = current.dataset.name;
-      if (msgField && (msgField.value.trim() === '' || msgField.value === lastPrefill)) writeMessage(summary());
+      touch();
     }
     offerEls.forEach(function (o) {
-      o.addEventListener('click', function () { selectOffer(o); });
+      o.addEventListener('click', function () { selectOffer(o); touch(); });
       o.addEventListener('focusin', function () { selectOffer(o); });
       // « Choisir » : on sélectionne la formule et on passe à l'étape 2 (les options)
       var pick = o.querySelector('.offer__pick');
       if (pick) pick.addEventListener('click', function (e) {
         e.stopPropagation();
         selectOffer(o);
+        touch();
         if (extras) extras.scrollIntoView({ block: 'start' });
       });
     });
-    optionInputs.forEach(function (o) { o.addEventListener('change', render); });
+    optionInputs.forEach(function (o) { o.addEventListener('change', function () { touched = true; render(); }); });
     // Et dans l'autre sens : changer le menu du formulaire change la carte choisie
     if (typeSelect) typeSelect.addEventListener('change', function () {
+      touched = true;
       offerEls.forEach(function (o) { if (o.dataset.name === typeSelect.value) selectOffer(o); });
+      syncMessage();
     });
     selectOffer(current);
     var quoteBtn = document.querySelector('[data-quote]');
