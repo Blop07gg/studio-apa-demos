@@ -29,7 +29,7 @@
 
   <link rel="preload" href="fonts/manrope-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="css/style.css?v=17">
+  <link rel="stylesheet" href="css/style.css?v=19">
   <script>document.documentElement.classList.remove('no-js');document.documentElement.classList.add('js');</script>
 
     <script type="application/ld+json">
@@ -58,7 +58,7 @@
     ],
     "email": "orvostudio@gmail.com",
     "telephone": "+33658887727",
-    "priceRange": "200 € – 3 000 €",
+    "priceRange": "200 € – 500 €",
     "knowsLanguage": "fr"
   }
   </script>
@@ -104,7 +104,7 @@
       <ul class="hero__facts">
         <li><b>300&nbsp;€</b><span>le site</span></li>
         <li><b>1 à 2&nbsp;sem.</b><span>en ligne</span></li>
-        <li><b>0&nbsp;€<small>/mois</small></b><span>la maintenance</span></li>
+        <li><b>19&nbsp;€<small>/mois</small></b><span>la maintenance</span></li>
       </ul>
     </div>
   </section>
@@ -182,7 +182,7 @@
           <div class="svc__item">
             <h3><button class="svc__btn" type="button" aria-expanded="false" aria-controls="svc-3" data-svc-btn><span class="svc__num" aria-hidden="true">03</span><span class="svc__label">Maintenance</span><i class="svc__chev" aria-hidden="true"></i></button></h3>
             <div class="svc__body" id="svc-3">
-              <div class="svc__inner"><p>Un message suffit : horaires, tarifs, photos, on s'en occupe.</p><p class="svc__key"><b>0&nbsp;€ par mois</b><b>Sans engagement</b></p></div>
+              <div class="svc__inner"><p>Un message suffit : horaires, tarifs, photos, on s'en occupe.</p><p class="svc__key"><b>Dès 19&nbsp;€ par mois</b><b>Sans engagement</b></p></div>
             </div>
           </div>
         </div>
@@ -280,14 +280,6 @@
           <p class="offer__time">Délai fixé sur le devis</p>
           <button class="btn btn--outline offer__pick" type="button">Choisir</button>
         </article>
-        <!-- À VÉRIFIER : formule reprise de Digital Shift, à confirmer avant mise en ligne (capacité à livrer, délai) -->
-        <article class="offer" data-name="Site e-commerce" data-price="3000">
-          <h3>Site e-commerce</h3>
-          <p class="offer__price">3&nbsp;000&nbsp;€</p>
-          <p class="offer__desc">Boutique en ligne, paiement sécurisé.</p>
-          <p class="offer__time">Délai fixé sur le devis</p>
-          <button class="btn btn--outline offer__pick" type="button">Choisir</button>
-        </article>
       </div>
 
       <div class="extras reveal" data-extras>
@@ -313,23 +305,32 @@
             <label class="extra__label" for="opt-maps"><b>Google Maps</b><span>Carte d'accès et aide pour votre fiche Google.</span></label>
             <span class="extra__price">+ 30&nbsp;€</span>
           </li>
-          <!-- À VÉRIFIER : shooting et Google Ads repris de Digital Shift (il faut un photographe partenaire et savoir gérer des campagnes) -->
+          <!-- À VÉRIFIER : shooting repris de Digital Shift (il faut un photographe partenaire à Bordeaux) -->
           <li class="extra">
             <input class="extra__input" type="checkbox" role="switch" id="opt-photo" value="150" data-name="Shooting photo et vidéo">
             <label class="extra__label" for="opt-photo"><b>Shooting photo &amp; vidéo</b><span>Séance de 2&nbsp;h chez vous avec un photographe partenaire.</span></label>
             <span class="extra__price">+ 150&nbsp;€</span>
           </li>
-          <li class="extra">
-            <input class="extra__input" type="checkbox" role="switch" id="opt-ads" value="80" data-name="Campagne Google Ads" data-monthly>
-            <label class="extra__label" for="opt-ads"><b>Campagne Google Ads gérée</b><span>Vos annonces en tête de Google. Budget publicitaire non inclus.</span></label>
-            <span class="extra__price">+ 80&nbsp;€/mois</span>
-          </li>
-          <li class="extra">
-            <input class="extra__input" type="checkbox" role="switch" id="opt-maint" value="0" data-name="Maintenance" data-monthly>
-            <label class="extra__label" for="opt-maint"><b>Maintenance</b><span>Mises à jour, sauvegardes, petites modifications. Sans engagement.</span></label>
-            <span class="extra__price">0&nbsp;€/mois</span>
-          </li>
         </ul>
+        <!-- À VÉRIFIER : niveaux et contenus repris/adaptés de Digital Shift, à valider par Pablo et Alexis -->
+        <fieldset class="maint" data-maint>
+          <legend class="step">Maintenance <span class="step__opt">(après la mise en ligne)</span></legend>
+          <label class="maint__row">
+            <input type="radio" name="maintenance" value="0" data-name="Sans maintenance" checked>
+            <span class="maint__info"><b>Sans maintenance</b><span>Le site reste en ligne. Chaque modification fait l'objet d'un devis.</span></span>
+            <span class="maint__price">0&nbsp;€/mois</span>
+          </label>
+          <label class="maint__row">
+            <input type="radio" name="maintenance" value="19" data-name="Essentiel">
+            <span class="maint__info"><b>Essentiel</b><span>Mises à jour, sauvegardes, petites modifications de textes et de photos.</span></span>
+            <span class="maint__price">19&nbsp;€/mois</span>
+          </label>
+          <label class="maint__row">
+            <input type="radio" name="maintenance" value="39" data-name="Premium">
+            <span class="maint__info"><b>Premium</b><span>Tout l'Essentiel, plus de modifications chaque mois, traitées en priorité.</span></span>
+            <span class="maint__price">39&nbsp;€/mois</span>
+          </label>
+        </fieldset>
         <div class="estimate" data-estimate>
           <div class="estimate__sum">
             <h3 class="step step--in">Votre estimation</h3>
@@ -367,7 +368,7 @@
         </details>
         <details class="faq__item">
           <summary>Et si je veux changer quelque chose après la livraison&nbsp;?</summary>
-          <p>Avec la maintenance (0&nbsp;€ par mois), c'est compris. Sinon, on vous fait un devis à chaque demande.</p>
+          <p>Avec la maintenance Essentiel (19&nbsp;€ par mois) ou Premium (39&nbsp;€ par mois), c'est compris. Sinon, on vous fait un devis à chaque demande.</p>
         </details>
         <details class="faq__item">
           <summary>À qui appartient le site&nbsp;?</summary>
@@ -423,7 +424,6 @@
             <option value="Site une page">Site une page (300 €)</option>
             <option value="Site complet" selected>Site complet (500 €)</option>
             <option value="Refonte">Refonte (200 €)</option>
-            <option value="Site e-commerce">Site e-commerce (3 000 €)</option>
             <option value="Maintenance">Maintenance</option>
             <option value="Question">Question</option>
             <option value="Je ne sais pas encore">Je ne sais pas encore</option>
@@ -465,6 +465,6 @@
   </div>
 </footer>
 
-<script src="js/main.js?v=17" defer></script>
+<script src="js/main.js?v=19" defer></script>
 </body>
 </html>

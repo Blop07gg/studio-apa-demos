@@ -186,6 +186,7 @@
     var monthlyOut = document.querySelector('[data-monthly-out]');
     var recapOut = document.querySelector('[data-recap]');
     var optionInputs = extras ? extras.querySelectorAll('.extra__input') : [];
+    var maintInputs = document.querySelectorAll('[data-maint] input');
     var typeSelect = document.getElementById('f-type');
     var simBox = document.querySelector('[data-sim]');
     var simField = document.getElementById('f-sim');
@@ -202,6 +203,13 @@
         if (o.hasAttribute('data-monthly')) { s.hasMonthly = true; s.monthly += v; s.monthlyItems.push(o.dataset.name + ' (' + v + ' €/mois)'); }
         else { s.total += v; s.options.push(o.dataset.name + ' (+' + v + ' €)'); }
       });
+      // Niveau de maintenance choisi
+      maintInputs.forEach(function (m) {
+        if (!m.checked) return;
+        s.maint = m.dataset.name + ' (' + m.value + ' €/mois)';
+        var v = Number(m.value);
+        if (v > 0) { s.hasMonthly = true; s.monthly += v; s.monthlyItems.push('Maintenance ' + m.dataset.name + ' (' + v + ' €/mois)'); }
+      });
       return s;
     }
     // Texte de la simulation envoyé avec le formulaire
@@ -211,7 +219,7 @@
       lines.push(pad('Formule') + current.dataset.name + ' (' + euros(Number(current.dataset.price)) + ')');
       if (s.options.length) { lines.push('Options :'); s.options.forEach(function (o) { lines.push('• ' + o); }); }
       else lines.push(pad('Options') + 'aucune');
-      lines.push(pad('Mensuel') + (s.monthlyItems.length ? s.monthlyItems.join(', ') : 'aucun'));
+      lines.push(pad('Maintenance') + (s.maint || 'Sans maintenance (0 €/mois)'));
       lines.push('');
       lines.push(pad('TOTAL ESTIMÉ') + euros(s.total) + (s.hasMonthly ? ' + ' + s.monthly + ' €/mois' : ''));
       return lines.join('\n');
@@ -280,6 +288,7 @@
       });
     });
     optionInputs.forEach(function (o) { o.addEventListener('change', function () { render(); showSimulation(); }); });
+    maintInputs.forEach(function (m) { m.addEventListener('change', function () { render(); showSimulation(); }); });
     if (typeSelect) typeSelect.addEventListener('change', function () {
       offerEls.forEach(function (o) { if (o.dataset.name === typeSelect.value) { selectOffer(o); showSimulation(); } });
     });
